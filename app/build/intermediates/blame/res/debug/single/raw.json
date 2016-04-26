@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\rafha\\OneDrive\\Documentos\\facedetect\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lbpcascade_frontalface.xml",
-        "source": "C:\\Users\\rafha\\OneDrive\\Documentos\\facedetect\\app\\src\\main\\res\\raw\\lbpcascade_frontalface.xml"
-    },
-    {
         "merged": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\raw\\lbpcascade_frontalface.xml",
         "source": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\src\\main\\res\\raw\\lbpcascade_frontalface.xml"
     }
