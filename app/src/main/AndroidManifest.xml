@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="br.com.pucgo.facedetection"
+    android:installLocation="preferExternal">
+
+    <uses-sdk android:targetSdkVersion="19"
+        android:minSdkVersion="2"
+        tools:overrideLibrary="org.opencv"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!--<activity
+            android:name="br.com.pucgo.supportretina.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
+        <activity
+            android:name=".callbacks.Zoom"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_zoom_view"
+            android:screenOrientation="landscape"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".callbacks.MultipleZoomCanny"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_multiple_zoom_canny"
+            android:screenOrientation="landscape"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".callbacks.MultipleZoomActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/title_activity_multiple_zoom"
+            android:screenOrientation="landscape"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".callbacks.Split"
+            android:label="@string/title_activity_split_view"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+    </application>
+
+</manifest>

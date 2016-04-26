@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Support Retiniase Pigmentosa</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_send">AttentionMeter</string>
+    <string name="Zoom_View">Zoom View</string>
+    <string name="Multiple_Zoom">Multiple </string>
+    <string name="Multiple_Zoom_Canny">Multiple Canny</string>
+    <string name="Split_View">SplitView</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+    <string name="textViewAttention">Camera Resolution</string>
+    <string name="title_activity_zoom_view">ZoomView</string>
+    <string name="title_activity_multiple_zoom_canny">MultipleZoomCanny</string>
+    <string name="title_activity_multiple_zoom">MultipleZoom</string>
+    <string name="title_activity_split_view">SplitView</string>
+
+</resources>
