@@ -51,7 +51,7 @@ public class FaceDetect extends CameraCallback {
     private CascadeClassifier javaDetector;
     private DetectionBasedTracker nativeDetector;
     private int absoluteFaceSize = 0;
-    private LinkedList<FaceDrawing> trackedFaceDrawings;
+    private LinkedList<FaceDrawing> trackedFaceDrawings = new LinkedList<>();
     private Mat mRgba;
     private Mat mGray;
 
