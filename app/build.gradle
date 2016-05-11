@@ -34,7 +34,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.github.RicardoRFaria:opcvtest:7695183abf'
+    compile 'com.github.RafaelaAraujo:OpenCv:3.1v'
 }
 
 group = 'br.com.pucgo.facedetection'
