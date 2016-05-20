@@ -28,54 +28,8 @@
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+    <application>
         <uses-library android:name="android.test.runner" />
-        <!--
-        <activity
-            android:name="br.com.pucgo.supportretina.MainActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        -->
-        <activity
-            android:name="br.com.pucgo.facedetection.callbacks.Zoom"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="true"
-            android:label="@string/title_activity_zoom_view"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="br.com.pucgo.facedetection.callbacks.MultipleZoomCanny"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="true"
-            android:label="@string/title_activity_multiple_zoom_canny"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="br.com.pucgo.facedetection.callbacks.MultipleZoomActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="true"
-            android:label="@string/title_activity_multiple_zoom"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="br.com.pucgo.facedetection.callbacks.Split"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="true"
-            android:label="@string/title_activity_split_view"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
     </application>
 
 </manifest>
