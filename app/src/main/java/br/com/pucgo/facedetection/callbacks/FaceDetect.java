@@ -54,7 +54,6 @@ public class FaceDetect extends CameraCallback {
     private LinkedList<FaceDrawing> trackedFaceDrawings = new LinkedList<>();
     private Mat mRgba;
     private Mat mGray;
-
     //Constantes
     private final Scalar RED = new Scalar(255, 0, 0, 255);
     private final Scalar ORANGE = new Scalar(255, 103, 0, 255);
@@ -62,6 +61,7 @@ public class FaceDetect extends CameraCallback {
     private final Scalar GREEN = new Scalar(0, 255, 0, 255);
     private final Scalar BLUE = new Scalar(0, 0, 255, 255);
     private final Scalar YELLOW = new Scalar(255, 255, 0, 255);
+
 
     public FaceDetect(Context context) {
         this.context = context;
