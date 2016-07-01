@@ -13,7 +13,6 @@ import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.objdetect.CascadeClassifier;
 
 import java.io.IOException;
 import java.util.LinkedList;
