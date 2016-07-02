@@ -189,7 +189,7 @@ public class FaceDetect extends CameraCallback {
                     //the face is found (small movement)
                     if ((Math.abs(f.xpt - pt1.x) < FaceDrawing.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDrawing.FACE_MAX_MOVEMENT)) {
                         matchedFace = true;
-                        f.updateFace( aFacesArray.width , aFacesArray.height, (int) pt1.x, (int) pt1.y);
+                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y);
                         mf = f;
                         break;
                     }
@@ -304,11 +304,12 @@ public class FaceDetect extends CameraCallback {
         else return YELLOW;
     }
 
-    public Bitmap analysePicture(Activity activity,Uri selectedImageUri) {
+
+    public Bitmap analysePicture(Uri selectedImageUri) {
         Bitmap bitmap = null;
         Mat imageMat = new Mat(100, 100, CvType.CV_8U, new Scalar(4));
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), selectedImageUri);
+            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), selectedImageUri);
             Utils.bitmapToMat(bitmap, imageMat);
             Utils.matToBitmap(detectface(imageMat), bitmap);
 
@@ -322,6 +323,21 @@ public class FaceDetect extends CameraCallback {
 
         MatOfRect faces = new MatOfRect();
         MatOfRect facesFliped = new MatOfRect();
+
+        if (absoluteFaceSize == 0) {
+            int height = inputFrame.rows();
+            float relativeFaceSize = 0.2f;
+
+            if (Math.round(height * relativeFaceSize) > 0) {
+                absoluteFaceSize = Math.round(height * relativeFaceSize);
+            }
+            nativeDetector.setMinFaceSize(absoluteFaceSize);
+        }
+
+        if (javaDetector != null)
+            javaDetector.detectMultiScale(inputFrame, faces, 1.1, 2, 2,
+                    new Size(absoluteFaceSize, absoluteFaceSize), new Size());
+
 
         Core.flip(faces, facesFliped, 1);
 
@@ -379,33 +395,34 @@ public class FaceDetect extends CameraCallback {
                 mf = f;
             }
             //where to draw face and properties
-            if (mf.age > 5) {
-                //draw attention line
-                int SCALE = 1;
-                Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
-                Point lnpt2;
-                if (mf.age > mf.width) {
-                    lnpt2 = new Point(mf.xpt * SCALE + mf.width, mf.ypt * SCALE - 5);
-                } else {
-                    lnpt2 = new Point(mf.xpt * SCALE + mf.age, mf.ypt * SCALE - 5);
-                }
+//            if (mf.age > 5) {
+            //draw attention line
+            int SCALE = 1;
+            Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
+            Point lnpt2;
+//                if (mf.age > mf.width) {
+//                    lnpt2 = new Point(mf.xpt * SCALE + mf.width, mf.ypt * SCALE - 5);
+//                } else {
+            lnpt2 = new Point(mf.xpt * SCALE + mf.age, mf.ypt * SCALE - 5);
+//                }
 
-                //drawing bold attention line
-                Core.rectangle(inputFrame, lnpt1, lnpt2, RED, 10, 8, 0);
+            //drawing bold attention line
+            Core.rectangle(inputFrame, lnpt1, lnpt2, RED, 10, 8, 0);
 
-                //drawing face
-                Core.rectangle(inputFrame, pt1, pt2, getColor(mf), 3, 8, 0);
+            //drawing face
+            Core.rectangle(inputFrame, pt1, pt2, getColor(mf), 3, 8, 0);
 
-                //drawing eyes
-                Core.rectangle(inputFrame, mf.eyeLeft1, mf.eyeLeft2, MAGENTA, 3, 8, 0);
-                Core.rectangle(inputFrame, mf.eyeRight1, mf.eyeRight2, MAGENTA, 3, 8, 0);
+            //drawing eyes
+            Core.rectangle(inputFrame, mf.eyeLeft1, mf.eyeLeft2, MAGENTA, 3, 8, 0);
+            Core.rectangle(inputFrame, mf.eyeRight1, mf.eyeRight2, MAGENTA, 3, 8, 0);
 
-                //drawing mouth
-                Core.rectangle(inputFrame, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
-            }
+            //drawing mouth
+            Core.rectangle(inputFrame, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
+//            }
+//        }
         }
-
         return inputFrame;
     }
+
 
 }

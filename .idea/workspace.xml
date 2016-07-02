@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e184beb4-a925-44fd-81d9-907c82bb08b8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/ImageAnalysis.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java" />
     </list>
     <ignored path="faceDetect.iws" />
@@ -39,7 +39,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#825#826#0" expanded="false" />
+                <element signature="e#882#883#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -48,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <caret line="327" column="5" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -57,9 +61,17 @@
       <file leaf-file-name="FaceDetect.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84794277">
-              <caret line="310" column="63" selection-start-line="310" selection-start-column="63" selection-end-line="310" selection-end-column="63" />
-              <folding />
+            <state vertical-scroll-proportion="2.3076923">
+              <caret line="366" column="23" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
+              <folding>
+                <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+                <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,10 +81,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-              <folding>
-                <element signature="e#227#228#0" expanded="true" />
-                <element signature="e#265#266#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1710,6 +1719,7 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/VideoAnalysis.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/ImageAnalysis.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java" />
       </list>
     </option>
@@ -1744,6 +1754,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -1753,75 +1764,10 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faceDetect" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faceDetect" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faceDetect" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="facedetection" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="faceDetect" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="facedetection" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="callbacks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2070,9 +2016,9 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2110,7 +2056,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/VideoAnalysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/CameraCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2126,7 +2120,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="293" column="0" selection-start-line="293" selection-start-column="0" selection-end-line="298" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2134,9 +2136,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/CameraCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
           <folding>
-            <element signature="e#227#228#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="293" column="0" selection-start-line="293" selection-start-column="0" selection-end-line="298" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2145,31 +2180,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="293" column="0" selection-start-line="293" selection-start-column="0" selection-end-line="298" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/CameraCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2214,7 +2229,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="260" column="72" selection-start-line="260" selection-start-column="72" selection-end-line="260" selection-end-column="72" />
-          <folding />
+          <folding>
+            <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2222,7 +2245,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2308,10 +2330,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <element signature="e#227#228#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2319,23 +2338,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#825#826#0" expanded="false" />
+            <element signature="e#882#883#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDrawing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <caret line="327" column="5" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84794277">
-          <caret line="310" column="63" selection-start-line="310" selection-start-column="63" selection-end-line="310" selection-end-column="63" />
-          <folding />
+        <state vertical-scroll-proportion="2.3076923">
+          <caret line="366" column="23" selection-start-line="366" selection-start-column="23" selection-end-line="366" selection-end-column="23" />
+          <folding>
+            <element signature="method#onCameraFrame#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#setResolution#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#showPreviewImage#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#menuSelected#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#initMenuCameraChoice#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#iniciaFaceDetection#0;class#FaceDetect#0" expanded="false" />
+            <element signature="method#getColor#0;class#FaceDetect#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
