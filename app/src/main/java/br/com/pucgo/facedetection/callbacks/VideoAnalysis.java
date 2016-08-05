@@ -42,7 +42,7 @@ public class VideoAnalysis {
 
     private Context context;
 
-    private static final int FILE_SELECT_CODE = 5;
+    public static final int FILE_SELECT_CODE = 5;
 //    private Button btnCreateVideo;
     private Activity activity;
 
@@ -159,7 +159,7 @@ public class VideoAnalysis {
 //        }
 //    }
 
-    private void openVideoFromUri(Intent data) {
+    public void openVideoFromUri(Intent data) {
         final Uri uri = data.getData();
         try {
             initAnalysisVideo(getFilePath(uri));
