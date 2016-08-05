@@ -58,6 +58,7 @@ public class VideoAnalysis {
     public VideoAnalysis(Activity activity) {
         this.activity = activity;
         framePackage = new FramePackage();
+        faceDetectController = new FaceDetect(activity);
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activityvideo);
 
