@@ -67,7 +67,7 @@ public class VideoAnalysis {
             @Override
             public void onManagerConnected(int status) {
                 System.loadLibrary("detection_based_tracker");
-                faceDetectController.iniciaFaceDetection();
+                faceDetectController.iniciaFaceDetection(false);
             }
 
             @Override

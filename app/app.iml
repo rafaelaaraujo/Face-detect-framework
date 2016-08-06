@@ -102,6 +102,5 @@
     <orderEntry type="library" exported="" name="OpenCv-3.1v" level="project" />
     <orderEntry type="library" exported="" name="jcodec-0.1.6-3" level="project" />
     <orderEntry type="library" exported="" name="junit" level="project" />
-    <orderEntry type="library" exported="" name="android-android-23" level="project" />
   </component>
 </module>

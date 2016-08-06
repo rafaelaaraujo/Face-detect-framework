@@ -102,7 +102,7 @@ public class FaceDetect extends CameraCallback {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     System.loadLibrary("detection_based_tracker");
-                    iniciaFaceDetection();
+                    iniciaFaceDetection(true);
                     break;
 
                 default:
@@ -260,7 +260,7 @@ public class FaceDetect extends CameraCallback {
         cameraOrientation = menu.add(detectorNameCamera[BACK_CAMERA]);
     }
 
-    public void iniciaFaceDetection() {
+    public void iniciaFaceDetection(boolean configureCamera) {
         String TAG = "OCVSample::Activity";
         try {
             // load cascade file from application resources
@@ -288,8 +288,10 @@ public class FaceDetect extends CameraCallback {
 
             cascadeDir.delete();
 
-            cameraView.enableView();
-            cameraView.enableFpsMeter();
+            if(configureCamera) {
+                cameraView.enableView();
+                cameraView.enableFpsMeter();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
