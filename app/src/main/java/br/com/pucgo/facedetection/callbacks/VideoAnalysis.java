@@ -40,8 +40,6 @@ import br.com.pucgo.facedetection.controller.FramePackage;
  */
 public class VideoAnalysis {
 
-    private Context context;
-
     public static final int FILE_SELECT_CODE = 5;
 //    private Button btnCreateVideo;
     private Activity activity;
@@ -179,7 +177,7 @@ public class VideoAnalysis {
         String selection = null;
         String[] selectionArgs = null;
         // Uri is different in versions after KITKAT (Android 4.4), we need to
-        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(context.getApplicationContext(), uri)) {
+        if (Build.VERSION.SDK_INT >= 19 && DocumentsContract.isDocumentUri(activity.getApplicationContext(), uri)) {
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -210,7 +208,7 @@ public class VideoAnalysis {
             };
             Cursor cursor = null;
             try {
-                cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+                cursor = activity.getContentResolver().query(uri, projection, selection, selectionArgs, null);
                 assert cursor != null;
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 if (cursor.moveToFirst()) {
