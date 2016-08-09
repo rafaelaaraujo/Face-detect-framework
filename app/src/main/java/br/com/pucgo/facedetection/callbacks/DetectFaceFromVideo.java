@@ -38,7 +38,7 @@ import br.com.pucgo.facedetection.controller.FramePackage;
  * Created by rafaela
  * on 30/06/2016.
  */
-public class VideoAnalysis {
+public class DetectFaceFromVideo {
 
     public static final int FILE_SELECT_CODE = 5;
 //    private Button btnCreateVideo;
@@ -51,7 +51,7 @@ public class VideoAnalysis {
     private boolean carregandoVideo = false;
 
 
-    public VideoAnalysis(Activity activity) {
+    public DetectFaceFromVideo(Activity activity) {
         this.activity = activity;
         framePackage = new FramePackage();
         faceDetectController = new FaceDetect(activity);
@@ -271,8 +271,6 @@ public class VideoAnalysis {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            createMP4Video.PrepareForScreen();
 
             int totalFrameNumber = framePackage.getCount();
             for (int frameNum = 0; frameNum < totalFrameNumber; ++frameNum) {

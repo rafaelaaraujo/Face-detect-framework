@@ -318,7 +318,6 @@ public class FaceDelimiters {
     }
 
     public boolean isTooOld() {
-//        int FACE_MAX_LIFE = 1;
         return life > 1;
     }
 
