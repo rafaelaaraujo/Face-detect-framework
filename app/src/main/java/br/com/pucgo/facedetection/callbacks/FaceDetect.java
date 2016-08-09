@@ -1,6 +1,5 @@
 package br.com.pucgo.facedetection.callbacks;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -35,7 +34,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 
 import br.com.pucgo.facedetection.R;
-import br.com.pucgo.facedetection.controller.FaceDrawing;
+import br.com.pucgo.facedetection.controller.FaceDelimiters;
 import br.com.pucgo.facedetection.custom.CustomJavaCameraView;
 
 
@@ -57,7 +56,7 @@ public class FaceDetect extends CameraCallback {
     private CascadeClassifier javaDetector;
     private DetectionBasedTracker nativeDetector;
     private int absoluteFaceSize = 0;
-    private LinkedList<FaceDrawing> trackedFaceDrawings = new LinkedList<>();
+    private LinkedList<FaceDelimiters> trackedFaceDelimiterses = new LinkedList<>();
     private Mat mRgba;
     private Mat mGray;
     //Constantes
@@ -147,6 +146,10 @@ public class FaceDetect extends CameraCallback {
         MatOfRect faces = new MatOfRect();
         MatOfRect facesFliped = new MatOfRect();
 
+        return getMat(mRgba,mGray,faces, facesFliped);
+    }
+
+    private Mat getMat(Mat mRgba, Mat mGray, MatOfRect faces, MatOfRect facesFliped) {
         if (javaDetector != null)
             javaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2,
                     new Size(absoluteFaceSize, absoluteFaceSize), new Size());
@@ -156,80 +159,80 @@ public class FaceDetect extends CameraCallback {
         Rect[] facesArray = facesFliped.toArray();
         for (Rect aFacesArray : facesArray) {
 
-            //Ages all trackedFaceDrawings
-            for (FaceDrawing f : trackedFaceDrawings) {
+            //Ages all trackedFaceDelimiterses
+            for (FaceDelimiters f : trackedFaceDelimiterses) {
                 f.updateLife();
             }
 
             //Remove expired faces
-            LinkedList<FaceDrawing> trackedFacesTemp = new LinkedList<>();
-            for (FaceDrawing f : trackedFaceDrawings) {
+            LinkedList<FaceDelimiters> trackedFacesTemp = new LinkedList<>();
+            for (FaceDelimiters f : trackedFaceDelimiterses) {
                 if (!f.isTooOld()) {
                     trackedFacesTemp.add(f);
                 }
             }
 
-            trackedFaceDrawings.clear();
+            trackedFaceDelimiterses.clear();
 
             if (trackedFacesTemp.size() > 0) {
-                trackedFaceDrawings = trackedFacesTemp;
+                trackedFaceDelimiterses = trackedFacesTemp;
             }
 
             boolean matchedFace = false;
-            FaceDrawing mf = null;
+            FaceDelimiters faceDelimiters = null;
 
             Point pt1 = aFacesArray.tl();
             Point pt2 = aFacesArray.br();
 
-            //check if there are trackedFaceDrawings
+            //check if there are trackedFaceDelimiterses
             double IMAGE_SCALE = 1;
-            if (trackedFaceDrawings.size() > 0) {
+            if (trackedFaceDelimiterses.size() > 0) {
                 //each face being tracked
-                for (FaceDrawing f : trackedFaceDrawings) {
+                for (FaceDelimiters f : trackedFaceDelimiterses) {
                     //the face is found (small movement)
-                    if ((Math.abs(f.xpt - pt1.x) < FaceDrawing.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDrawing.FACE_MAX_MOVEMENT)) {
+                    if ((Math.abs(f.xpt - pt1.x) < FaceDelimiters.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDelimiters.FACE_MAX_MOVEMENT)) {
                         matchedFace = true;
                         f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y);
-                        mf = f;
+                        faceDelimiters = f;
                         break;
                     }
                 }
                 //if face not found, add a new face
                 if (!matchedFace) {
-                    FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                    trackedFaceDrawings.add(f);
-                    mf = f;
+                    FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                    trackedFaceDelimiterses.add(f);
+                    faceDelimiters = f;
                 }
 
             } else { //No tracked faces: adding one
-                FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                trackedFaceDrawings.add(f);
-                mf = f;
+                FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                trackedFaceDelimiterses.add(f);
+                faceDelimiters = f;
             }
             //where to draw face and properties
-            if (mf.age > 5) {
+            if (faceDelimiters.age > 5) {
                 //draw attention line
                 int SCALE = 1;
-                Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
+                Point lnpt1 = new Point(faceDelimiters.xpt * SCALE, (faceDelimiters.ypt * SCALE - 5) - 5);
                 Point lnpt2;
-                if (mf.age > mf.width) {
-                    lnpt2 = new Point(mf.xpt * SCALE + mf.width, mf.ypt * SCALE - 5);
+                if (faceDelimiters.age > faceDelimiters.width) {
+                    lnpt2 = new Point(faceDelimiters.xpt * SCALE + faceDelimiters.width, faceDelimiters.ypt * SCALE - 5);
                 } else {
-                    lnpt2 = new Point(mf.xpt * SCALE + mf.age, mf.ypt * SCALE - 5);
+                    lnpt2 = new Point(faceDelimiters.xpt * SCALE + faceDelimiters.age, faceDelimiters.ypt * SCALE - 5);
                 }
 
                 //drawing bold attention line
                 Core.rectangle(mRgba, lnpt1, lnpt2, RED, 10, 8, 0);
 
                 //drawing face
-                Core.rectangle(mRgba, pt1, pt2, getColor(mf), 3, 8, 0);
+                Core.rectangle(mRgba, pt1, pt2, getColor(faceDelimiters), 3, 8, 0);
 
                 //drawing eyes
-                Core.rectangle(mRgba, mf.eyeLeft1, mf.eyeLeft2, MAGENTA, 3, 8, 0);
-                Core.rectangle(mRgba, mf.eyeRight1, mf.eyeRight2, MAGENTA, 3, 8, 0);
+                Core.rectangle(mRgba, faceDelimiters.eyeLeft1, faceDelimiters.eyeLeft2, MAGENTA, 3, 8, 0);
+                Core.rectangle(mRgba, faceDelimiters.eyeRight1, faceDelimiters.eyeRight2, MAGENTA, 3, 8, 0);
 
                 //drawing mouth
-                Core.rectangle(mRgba, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
+                Core.rectangle(mRgba, faceDelimiters.mouthTopLeft, faceDelimiters.mouthBotRight, ORANGE, 3, 8, 0);
             }
         }
         return mRgba;
@@ -288,7 +291,7 @@ public class FaceDetect extends CameraCallback {
 
             cascadeDir.delete();
 
-            if(configureCamera) {
+            if (configureCamera) {
                 cameraView.enableView();
                 cameraView.enableFpsMeter();
             }
@@ -299,7 +302,7 @@ public class FaceDetect extends CameraCallback {
         }
     }
 
-    private Scalar getColor(FaceDrawing mf) {
+    private Scalar getColor(FaceDelimiters mf) {
         if (mf.isNodding()) return GREEN;
         else if (mf.isShaking()) return RED;
         else if (mf.isStill()) return BLUE;
@@ -336,94 +339,96 @@ public class FaceDetect extends CameraCallback {
             nativeDetector.setMinFaceSize(absoluteFaceSize);
         }
 
-        if (javaDetector != null)
-            javaDetector.detectMultiScale(inputFrame, faces, 1.1, 2, 2,
-                    new Size(absoluteFaceSize, absoluteFaceSize), new Size());
+        return getMat(inputFrame,inputFrame,faces,facesFliped);
 
-
-        Core.flip(faces, facesFliped, 1);
-
-        Rect[] facesArray = facesFliped.toArray();
-        for (Rect aFacesArray : facesArray) {
-
-            //Ages all trackedFaceDrawings
-            for (FaceDrawing f : trackedFaceDrawings) {
-                f.updateLife();
-            }
-
-            //Remove expired faces
-            LinkedList<FaceDrawing> trackedFacesTemp = new LinkedList<>();
-            for (FaceDrawing f : trackedFaceDrawings) {
-                if (!f.isTooOld()) {
-                    trackedFacesTemp.add(f);
-                }
-            }
-
-            trackedFaceDrawings.clear();
-
-            if (trackedFacesTemp.size() > 0) {
-                trackedFaceDrawings = trackedFacesTemp;
-            }
-
-            boolean matchedFace = false;
-            FaceDrawing mf = null;
-
-            Point pt1 = aFacesArray.tl();
-            Point pt2 = aFacesArray.br();
-
-            //check if there are trackedFaceDrawings
-            double IMAGE_SCALE = 1;
-            if (trackedFaceDrawings.size() > 0) {
-                //each face being tracked
-                for (FaceDrawing f : trackedFaceDrawings) {
-                    //the face is found (small movement)
-                    if ((Math.abs(f.xpt - pt1.x) < FaceDrawing.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDrawing.FACE_MAX_MOVEMENT)) {
-                        matchedFace = true;
-                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y);
-                        mf = f;
-                        break;
-                    }
-                }
-                //if face not found, add a new face
-                if (!matchedFace) {
-                    FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                    trackedFaceDrawings.add(f);
-                    mf = f;
-                }
-
-            } else { //No tracked faces: adding one
-                FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                trackedFaceDrawings.add(f);
-                mf = f;
-            }
-            //where to draw face and properties
-//            if (mf.age > 5) {
-            //draw attention line
-            int SCALE = 1;
-            Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
-            Point lnpt2;
-//                if (mf.age > mf.width) {
-//                    lnpt2 = new Point(mf.xpt * SCALE + mf.width, mf.ypt * SCALE - 5);
-//                } else {
-            lnpt2 = new Point(mf.xpt * SCALE + mf.age, mf.ypt * SCALE - 5);
-//                }
-
-            //drawing bold attention line
-            Core.rectangle(inputFrame, lnpt1, lnpt2, RED, 10, 8, 0);
-
-            //drawing face
-            Core.rectangle(inputFrame, pt1, pt2, getColor(mf), 3, 8, 0);
-
-            //drawing eyes
-            Core.rectangle(inputFrame, mf.eyeLeft1, mf.eyeLeft2, MAGENTA, 3, 8, 0);
-            Core.rectangle(inputFrame, mf.eyeRight1, mf.eyeRight2, MAGENTA, 3, 8, 0);
-
-            //drawing mouth
-            Core.rectangle(inputFrame, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
+//        if (javaDetector != null)
+//            javaDetector.detectMultiScale(inputFrame, faces, 1.1, 2, 2,
+//                    new Size(absoluteFaceSize, absoluteFaceSize), new Size());
+//
+//
+//        Core.flip(faces, facesFliped, 1);
+//
+//        Rect[] facesArray = facesFliped.toArray();
+//        for (Rect aFacesArray : facesArray) {
+//
+//            //Ages all trackedFaceDelimiterses
+//            for (FaceDelimiters f : trackedFaceDelimiterses) {
+//                f.updateLife();
 //            }
+//
+//            //Remove expired faces
+//            LinkedList<FaceDelimiters> trackedFacesTemp = new LinkedList<>();
+//            for (FaceDelimiters f : trackedFaceDelimiterses) {
+//                if (!f.isTooOld()) {
+//                    trackedFacesTemp.add(f);
+//                }
+//            }
+//
+//            trackedFaceDelimiterses.clear();
+//
+//            if (trackedFacesTemp.size() > 0) {
+//                trackedFaceDelimiterses = trackedFacesTemp;
+//            }
+//
+//            boolean matchedFace = false;
+//            FaceDelimiters mf = null;
+//
+//            Point pt1 = aFacesArray.tl();
+//            Point pt2 = aFacesArray.br();
+//
+//            //check if there are trackedFaceDelimiterses
+//            double IMAGE_SCALE = 1;
+//            if (trackedFaceDelimiterses.size() > 0) {
+//                //each face being tracked
+//                for (FaceDelimiters f : trackedFaceDelimiterses) {
+//                    //the face is found (small movement)
+//                    if ((Math.abs(f.xpt - pt1.x) < FaceDelimiters.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDelimiters.FACE_MAX_MOVEMENT)) {
+//                        matchedFace = true;
+//                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y);
+//                        mf = f;
+//                        break;
+//                    }
+//                }
+//                //if face not found, add a new face
+//                if (!matchedFace) {
+//                    FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+//                    trackedFaceDelimiterses.add(f);
+//                    mf = f;
+//                }
+//
+//            } else { //No tracked faces: adding one
+//                FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+//                trackedFaceDelimiterses.add(f);
+//                mf = f;
+//            }
+//            //where to draw face and properties
+////            if (mf.age > 5) {
+//            //draw attention line
+//            int SCALE = 1;
+//            Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
+//            Point lnpt2;
+////                if (mf.age > mf.width) {
+////                    lnpt2 = new Point(mf.xpt * SCALE + mf.width, mf.ypt * SCALE - 5);
+////                } else {
+//            lnpt2 = new Point(mf.xpt * SCALE + mf.age, mf.ypt * SCALE - 5);
+////                }
+//
+//            //drawing bold attention line
+//            Core.rectangle(inputFrame, lnpt1, lnpt2, RED, 10, 8, 0);
+//
+//            //drawing face
+//            Core.rectangle(inputFrame, pt1, pt2, getColor(mf), 3, 8, 0);
+//
+//            //drawing eyes
+//            Core.rectangle(inputFrame, mf.eyeLeft1, mf.eyeLeft2, MAGENTA, 3, 8, 0);
+//            Core.rectangle(inputFrame, mf.eyeRight1, mf.eyeRight2, MAGENTA, 3, 8, 0);
+//
+//            //drawing mouth
+//            Core.rectangle(inputFrame, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
+////            }
+////        }
 //        }
-        }
-        return inputFrame;
+//        return inputFrame;
     }
 
 

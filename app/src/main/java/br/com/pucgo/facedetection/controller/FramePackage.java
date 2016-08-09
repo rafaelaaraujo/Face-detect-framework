@@ -9,7 +9,6 @@ public class FramePackage {
 	List<Bitmap> frameList;
 	
 	public FramePackage() {
-		// TODO Auto-generated constructor stub
 		frameList = new ArrayList<Bitmap>();
 	}
 	
@@ -19,13 +18,7 @@ public class FramePackage {
 		frameList.add(frame);
 		return true;
 	}
-	
-//	public boolean addImage(String imgName, int duration) {
-//		Frame frame = new Frame(imgName, duration);
-//		frameList.add(frame);
-//		return true;
-//	}
-//
+
 	public boolean addImageAt(Bitmap frame, int index) {
 		if (index > 0 && index <= frameList.size()) {
 			frameList.add(index - 1, frame);
@@ -33,23 +26,7 @@ public class FramePackage {
 		}
 		return false;
 	}
-	
-//	public boolean addImageAt(String imgName, int duration, int index) {
-//		if (index > 0 && index <= frameList.size()) {
-//			Frame frame = new Frame(imgName, duration);
-//			frameList.add(index - 1, frame);
-//			return true;
-//		}
-//		return false;
-//	}
-		// REMOVE ===============================================
-	public boolean removeImage(int index) {
-		if (index > 0 && index <= frameList.size()) {
-			frameList.remove(index - 1);
-			return true;
-		}
-		return false;
-	}
+
 	
 		// GET ==================================================
 	public Bitmap getFrameAt(int index) {

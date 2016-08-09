@@ -46,8 +46,6 @@ public class VideoAnalysis {
 
     private ProgressDialog mProgress;
     private FaceDetect faceDetectController;
-//    public static final String SD_DIRECTORE = "//storage//extSdCard//DCIM//Camera//";
-    //public static final String SD_DIRECTORE = "//storage//external_SD//DCIM//Camera//";
 
     private FramePackage framePackage;
     private boolean carregandoVideo = false;
@@ -57,8 +55,6 @@ public class VideoAnalysis {
         this.activity = activity;
         framePackage = new FramePackage();
         faceDetectController = new FaceDetect(activity);
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activityvideo);
 
         Log.i("TAG", "Trying to load OpenCV library");
         LoaderCallbackInterface mOpenCVCallBack = new LoaderCallbackInterface() {
@@ -79,16 +75,6 @@ public class VideoAnalysis {
 
         createDialog();
     }
-
-//    public void video() {
-//
-//        try {
-//            createDialog();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void initAnalysisVideo(String mChosenFile) {
         try {
@@ -142,14 +128,14 @@ public class VideoAnalysis {
     }
 
 
-    //TODO IMPLEMENTADO NA PARTE DO CLIENTE
+    //TODO: IMPLEMENTADO NA PARTE DO CLIENTE
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        switch (requestCode) {
 //            case FILE_SELECT_CODE:
 //                if (resultCode == RESULT_OK) {
 //
-    //TODO RESULT OK CHAMAR METODO
+    //TODO: RESULT OK CHAMAR METODO
 //                    openVideoFromUri(data);
 //
 //                }

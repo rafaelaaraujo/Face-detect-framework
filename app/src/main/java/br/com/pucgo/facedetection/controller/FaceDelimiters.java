@@ -4,7 +4,7 @@ import br.com.pucgo.facedetection.enumerator.FaceMovementEnum;
 
 import org.opencv.core.*;
 
-public class FaceDrawing {
+public class FaceDelimiters {
 
     public int age = 0;
     public int width = 0;
@@ -37,7 +37,7 @@ public class FaceDrawing {
     public static final int FACE_MAX_MOVEMENT = 40;
     private final int FACE_ALTERNATION_THRESH = 2;
 
-    public FaceDrawing(int age, int width, int height, int xpt, int ypt, int life) {
+    public FaceDelimiters(int age, int width, int height, int xpt, int ypt, int life) {
 
         this.age = age;
         this.width = width;
