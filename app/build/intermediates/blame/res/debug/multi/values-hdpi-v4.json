@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
+                    "file": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -64,7 +64,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
+                    "file": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -78,7 +78,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "outputFile": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4\\values-hdpi-v4.xml",
         "map": [
             {
                 "to": {
@@ -90,7 +90,7 @@
                     "endOffset": 327
                 },
                 "from": {
-                    "file": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
+                    "file": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-hdpi\\values-hdpi.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

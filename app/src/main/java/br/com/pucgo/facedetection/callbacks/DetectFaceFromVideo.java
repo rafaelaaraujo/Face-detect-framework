@@ -41,7 +41,7 @@ import br.com.pucgo.facedetection.controller.FramePackage;
 public class DetectFaceFromVideo {
 
     public static final int FILE_SELECT_CODE = 5;
-//    private Button btnCreateVideo;
+    //    private Button btnCreateVideo;
     private Activity activity;
 
     private ProgressDialog mProgress;
@@ -145,16 +145,29 @@ public class DetectFaceFromVideo {
 //    }
 
     public void openVideoFromUri(Intent data) {
-        final Uri uri = data.getData();
-        try {
-            initAnalysisVideo(getFilePath(uri));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+        if (data != null) {
+            final Uri uri = data.getData();
+            try {
+                initAnalysisVideo(getFilePath(uri));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(activity, "Caminho do video inválido", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void openVideoFromPath(String path) {
+        if (path != null && path.equals("")) {
+            initAnalysisVideo(path);
+        } else {
+            Toast.makeText(activity, "Caminho do video inválido", Toast.LENGTH_LONG).show();
         }
     }
 
     /**
      * Get file path from uri object
+     *
      * @param uri
      * @return
      * @throws URISyntaxException

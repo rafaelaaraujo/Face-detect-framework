@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
+        "outputFile": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-h320dp\\values-h320dp.xml",
+                    "file": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-h320dp\\values-h320dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
+        "outputFile": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\values-h320dp-v13\\values-h320dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -83,7 +83,7 @@
                     "endOffset": 108
                 },
                 "from": {
-                    "file": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-h320dp\\values-h320dp.xml",
+                    "file": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-h320dp\\values-h320dp.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
