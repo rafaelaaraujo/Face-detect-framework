@@ -41,7 +41,6 @@ import br.com.pucgo.facedetection.controller.FramePackage;
 public class DetectFaceFromVideo {
 
     public static final int FILE_SELECT_CODE = 5;
-    //    private Button btnCreateVideo;
     private Activity activity;
 
     private ProgressDialog mProgress;
@@ -56,7 +55,6 @@ public class DetectFaceFromVideo {
         framePackage = new FramePackage();
         faceDetectController = new FaceDetect(activity);
 
-        Log.i("TAG", "Trying to load OpenCV library");
         LoaderCallbackInterface mOpenCVCallBack = new LoaderCallbackInterface() {
             @Override
             public void onManagerConnected(int status) {
@@ -69,10 +67,6 @@ public class DetectFaceFromVideo {
 
             }
         };
-        if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11, activity, mOpenCVCallBack)) {
-            Log.e("TAG", "Cannot connect to OpenCV Manager");
-        }
-
         createDialog();
     }
 
@@ -126,23 +120,6 @@ public class DetectFaceFromVideo {
             Toast.makeText(activity, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-    //TODO: IMPLEMENTADO NA PARTE DO CLIENTE
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        switch (requestCode) {
-//            case FILE_SELECT_CODE:
-//                if (resultCode == RESULT_OK) {
-//
-    //TODO: RESULT OK CHAMAR METODO
-//                    openVideoFromUri(data);
-//
-//                }
-//
-//                break;
-//        }
-//    }
 
     public void openVideoFromUri(Intent data) {
         if (data != null) {

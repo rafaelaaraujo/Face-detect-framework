@@ -56,6 +56,9 @@ public abstract class CameraCallback implements CameraBridgeViewBase.CvCameraVie
     public void showPreviewImage(boolean show) {
     }
 
+    /**
+     * define se a imagem capturada pela camera será mostrada ou não
+     */
     public void disableCameraView() {
     }
 }
