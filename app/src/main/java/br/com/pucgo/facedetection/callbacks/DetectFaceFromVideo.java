@@ -67,7 +67,6 @@ public class DetectFaceFromVideo {
 
             }
         };
-        createDialog();
     }
 
     private void initAnalysisVideo(String mChosenFile) {
@@ -107,8 +106,7 @@ public class DetectFaceFromVideo {
 
     }
 
-    protected void createDialog() {
-
+    protected void createDialogForChoiseVideo() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -116,7 +114,6 @@ public class DetectFaceFromVideo {
         try {
             activity.startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"), FILE_SELECT_CODE);
         } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
             Toast.makeText(activity, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -135,7 +132,7 @@ public class DetectFaceFromVideo {
     }
 
     public void openVideoFromPath(String path) {
-        if (path != null && path.equals("")) {
+        if (path != null && !path.equals("")) {
             initAnalysisVideo(path);
         } else {
             Toast.makeText(activity, "Caminho do video inválido", Toast.LENGTH_LONG).show();

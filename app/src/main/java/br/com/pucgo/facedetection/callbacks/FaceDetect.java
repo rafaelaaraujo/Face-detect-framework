@@ -84,7 +84,7 @@ public class FaceDetect extends CameraCallback {
      * FRONT CAMERA 1
      * @param camera camera que deseja usar
      */
-    private void setCamera(int camera) {
+    public void setCamera(int camera) {
         if (camera == BACK_CAMERA) {
             cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
             detectorTypeCamera = FRONT_CAMERA;
