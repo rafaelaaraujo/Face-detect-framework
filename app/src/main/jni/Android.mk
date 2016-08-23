@@ -20,7 +20,7 @@ OPENCV_INSTALL_MODULES:=off
 OPENCV_LIB_TYPE:=STATIC
 include /Users/egomez/dev/OpenCV4AndroidWorkspace/OpenCV-android-sdk/sdk/native/jni/OpenCV.mk
 
-LOCAL_SRC_FILES  := DetectionBasedTracker.cpp EmoDetector.cpp
+LOCAL_SRC_FILES  := DetectionBasedTracker.cpp/ EmoDetector.cpp
 
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)
 

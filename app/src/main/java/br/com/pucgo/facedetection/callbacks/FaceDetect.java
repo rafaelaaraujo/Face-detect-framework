@@ -71,6 +71,7 @@ public class FaceDetect extends CameraCallback {
         detectorNameCamera = new String[2];
         detectorNameCamera[FRONT_CAMERA] = "front camera";
         detectorNameCamera[BACK_CAMERA] = "back camera";
+        EmoDetector emoDetector = new EmoDetector();
     }
 
     public void setCameraView(CustomJavaCameraView cameraView) {
@@ -100,6 +101,7 @@ public class FaceDetect extends CameraCallback {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     System.loadLibrary("detection_based_tracker");
+                    System.loadLibrary("EmoDetector");
                     iniciaFaceDetection(true);
                     break;
 
