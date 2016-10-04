@@ -71,7 +71,6 @@ public class FaceDetect extends CameraCallback {
         detectorNameCamera = new String[2];
         detectorNameCamera[FRONT_CAMERA] = "front camera";
         detectorNameCamera[BACK_CAMERA] = "back camera";
-        EmoDetector emoDetector = new EmoDetector();
     }
 
     public void setCameraView(CustomJavaCameraView cameraView) {
@@ -325,7 +324,7 @@ public class FaceDetect extends CameraCallback {
         return bitmap;
     }
 
-    public Mat detectface(Mat inputFrame) {
+    Mat detectface(Mat inputFrame) {
 
         MatOfRect faces = new MatOfRect();
         MatOfRect facesFliped = new MatOfRect();
