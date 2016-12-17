@@ -7,12 +7,16 @@ package com.derzapp.myfacedetection;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Environment;
 import android.widget.Toast;
+
 
 import org.opencv.core.Mat;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +118,7 @@ public class FisherFaceRecognizer {
             int predicted = predict(faceFrame.getNativeObjAddr());
             EmotionEnum emotionEnum = EmotionEnum.getEnumFromValue(predicted);
             if (emotionEnum != null) {
-                return emotionEnum.toString().toLowerCase();
+                return emotionEnum.toString();
             }
         }
         return "";
@@ -173,7 +177,7 @@ public class FisherFaceRecognizer {
 
     /**
      * Trains a FaceRecognizer with given data and associated labels.
-     * <p>
+     * <p/>
      * C++: void FaceRecognizer::train(InputArrayOfArrays src, InputArray labels) = 0
      * Parameters:
      * src – The training images, that means the faces you want to learn. The data has to be given as a vector<Mat>.
@@ -193,14 +197,13 @@ public class FisherFaceRecognizer {
      * C++: int FaceRecognizer::predict(InputArray src) const = 0
      * C++: void FaceRecognizer::predict(InputArray src, int& label, double& confidence) const = 0
      * Predicts a label and associated confidence (e.g. distance) for a given input image.
-     * <p>
      * Parameters:
      * src – Sample image to get a prediction from.
      * label – The predicted label for the given image.
      * confidence – Associated confidence (e.g. distance) for the predicted label.
      * The suffix const means that prediction does not affect the internal model state, so the method can be safely
      * called from within different threads.
-     * <p>
+     * <p/>
      * The following example shows how to get a prediction from a trained model:
      *
      * @param image

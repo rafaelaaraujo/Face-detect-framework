@@ -6,9 +6,8 @@ package br.com.pucgo.facedetection.enumerator;
 public enum EmotionEnum {
     NEUTRAL(0),
     ANGER(1),
-    DISGUST(2),
-    HAPPY(3),
-    SURPRISE(4);
+    HAPPY(2),
+    SURPRISE(3);
 
     private final int value;
 

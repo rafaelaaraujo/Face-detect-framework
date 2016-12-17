@@ -1,0 +1,226 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<ImageView
+    android:id="@+id/image"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+    <com.derzapp.myfacedetection.custom.CustomJavaCameraView
+        android:id="@+id/fd_activity_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:screenOrientation="portrait" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B3ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Happy"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/progress_happy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:progress_curent="0"
+                    custom:progress_max="100"
+                    custom:progress_reached_bar_height="3dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#3498DB"
+                    custom:progress_text_offset="1dp"
+                    custom:progress_text_size="11sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="2dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Anger"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/progress_anger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:progress_curent="0"
+                    custom:progress_max="100"
+                    custom:progress_reached_bar_height="3dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#3498DB"
+                    custom:progress_text_offset="1dp"
+                    custom:progress_text_size="11sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="2dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B3ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Neutral"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/progress_neutral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:progress_curent="0"
+                    custom:progress_max="100"
+                    custom:progress_reached_bar_height="3dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#3498DB"
+                    custom:progress_text_offset="1dp"
+                    custom:progress_text_size="11sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="2dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Surprise"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/progress_surprise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:progress_curent="0"
+                    custom:progress_max="100"
+                    custom:progress_reached_bar_height="3dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#3498DB"
+                    custom:progress_text_offset="1dp"
+                    custom:progress_text_size="11sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="2dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B3ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Disgust"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/progress_disgust"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    custom:progress_curent="0"
+                    custom:progress_max="100"
+                    custom:progress_reached_bar_height="3dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#3498DB"
+                    custom:progress_text_offset="1dp"
+                    custom:progress_text_size="11sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="2dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingBottom="5dp">
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

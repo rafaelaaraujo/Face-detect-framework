@@ -44,6 +44,10 @@
         "source": "C:\\Users\\Rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
+        "merged": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\debug\\layout\\face_detect_surface_view.xml",
+        "source": "C:\\Users\\rafaela\\Documents\\faceDetect\\app\\src\\main\\res\\layout\\face_detect_surface_view.xml"
+    },
+    {
         "merged": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect2\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
         "source": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect2\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_media.xml"
     },
