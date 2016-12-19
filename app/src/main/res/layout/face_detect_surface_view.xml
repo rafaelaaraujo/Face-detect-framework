@@ -9,7 +9,7 @@
     android:visibility="gone"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
-    <com.derzapp.myfacedetection.custom.CustomJavaCameraView
+    <br.com.pucgo.facedetection.custom.CustomJavaCameraView
         android:id="@+id/fd_activity_surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
