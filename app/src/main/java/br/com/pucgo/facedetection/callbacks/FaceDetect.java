@@ -59,12 +59,6 @@ public class FaceDetect extends CameraCallback {
     private MenuItem cameraOrientation;
     private LinkedList<FaceDelimiters> trackedFaces = new LinkedList<>();
 
-    private CascadeClassifier javaDetector;
-    private DetectionBasedTracker nativeDetector;
-    private int absoluteFaceSize = 0;
-    private Mat mRgba;
-    private Mat mGray;
-
     //CONSTANTES
     private final Scalar RED = new Scalar(255, 0, 0, 255);
     private final Scalar ORANGE = new Scalar(255, 103, 0, 255);
@@ -81,8 +75,18 @@ public class FaceDetect extends CameraCallback {
     public NumberProgressBar progressDisgust;
     public FisherFaceRecognizer fisherFaceRecognizer;
 
+    private CascadeClassifier javaDetector;
+    private DetectionBasedTracker nativeDetector;
+    private int absoluteFaceSize = 0;
+    private Mat mRgba;
+    private Mat mGray;
+    private int i = 0;
+
+
+
     public FaceDetect(Activity activity) {
         this.context = activity;
+        trackedFaces = new LinkedList<>();
         progressHappy = (NumberProgressBar) activity.findViewById(R.id.progress_happy);
         progressAnger = (NumberProgressBar) activity.findViewById(R.id.progress_anger);
         progressSurprise = (NumberProgressBar) activity.findViewById(R.id.progress_surprise);
@@ -271,7 +275,6 @@ public class FaceDetect extends CameraCallback {
         return mRgba;
     }
 
-
     private synchronized void setUIText(final FaceDelimiters face) {
         context.runOnUiThread(new Runnable() {
             @Override
@@ -353,6 +356,44 @@ public class FaceDetect extends CameraCallback {
         }
     }
 
+    public void iniciaFaceDetection(CameraBridgeViewBase openCvCameraView, int width, int height) {
+        String TAG = "OCVSample::Activity";
+        try {
+            // load cascade file from application resources
+            InputStream is = context.getResources().openRawResource(R.raw.lbpcascade_frontalface);
+            File cascadeDir = context.getDir("cascade", Context.MODE_PRIVATE);
+            File mCascadeFile = new File(cascadeDir, "lbpcascade_frontalface.xml");
+            FileOutputStream os = new FileOutputStream(mCascadeFile);
+
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            is.close();
+            os.close();
+
+            javaDetector = new CascadeClassifier(mCascadeFile.getAbsolutePath());
+            if (javaDetector.empty()) {
+                Log.e(TAG, "Failed to load cascade classifier");
+                javaDetector = null;
+            } else
+                Log.i(TAG, "Loaded cascade classifier from " + mCascadeFile.getAbsolutePath());
+
+            nativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
+
+            cascadeDir.delete();
+
+            openCvCameraView.setMaxFrameSize(width, height);
+            openCvCameraView.enableView();
+            openCvCameraView.enableFpsMeter();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "Failed to load cascade. Exception thrown: " + e);
+        }
+    }
+
     private Scalar getColor(FaceDelimiters mf) {
         if (mf.isNodding()) return GREEN;
         else if (mf.isShaking()) return RED;
@@ -409,6 +450,10 @@ public class FaceDetect extends CameraCallback {
 
         //smooth
         bilateralFilter(face_resized, filtered, 0, 20.0, 2.0);
+
+        //Mat faceEllipse = ellipseFace(face_resized);
+        //save image
+       // SaveImage(filtered);
 
         return fisherFaceRecognizer.recognizeFace(filtered);
     }
