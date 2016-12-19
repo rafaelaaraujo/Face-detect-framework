@@ -121,7 +121,6 @@ public class FaceDetect extends CameraCallback {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     System.loadLibrary("detection_based_tracker");
-                    System.loadLibrary("EmoDetector");
                     iniciaFaceDetection(true);
                     fisherFaceRecognizer = new FisherFaceRecognizer(context);
                     fisherFaceRecognizer.trainClassifier();
