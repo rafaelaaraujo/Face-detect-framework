@@ -57,7 +57,7 @@ public class FaceDetect extends CameraCallback {
     private String[] detectorNameCamera;
     private int detectorTypeCamera = 0;
     private MenuItem cameraOrientation;
-    private LinkedList<FaceDelimiters> trackedFaces;
+    private LinkedList<FaceDelimiters> trackedFaces = new LinkedList<>();
 
     private CascadeClassifier javaDetector;
     private DetectionBasedTracker nativeDetector;

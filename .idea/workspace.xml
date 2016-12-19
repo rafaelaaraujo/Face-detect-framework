@@ -7,46 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3fb42ac-5fc3-4744-90e2-bbdf2fe8d8e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/assets/fonts/Square.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libfacerec.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_androidcamera.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_calib3d.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_contrib.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_core.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_features2d.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_flann.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_highgui.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_imgproc.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_info.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_java.so" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_legacy.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_ml.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_objdetect.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_ocl.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_photo.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_stitching.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_superres.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_ts.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_video.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/libs/armeabi-v7a/libopencv_videostab.a" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/cmdutils.c" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/config_make_everything.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/configure_ffmpeg.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/configure_x264.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/create_toolchain.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/ffmpeg.c" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/logjam.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/make_ffmpeg.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/make_x264.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/settings.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/uk_co_halfninja_videokit_Videokit.c" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/jni/uk_co_halfninja_videokit_Videokit.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java" afterPath="$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/jni/Android.mk" afterPath="$PROJECT_DIR$/app/src/main/jni/Android.mk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/jni/DetectionBasedTracker.cpp" afterPath="$PROJECT_DIR$/app/src/main/jni/DetectionBasedTracker.cpp" />
     </list>
     <ignored path="faceDetect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,8 +54,8 @@
       <file leaf-file-name="FaceDetect.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="8.140845">
-              <caret line="274" column="64" selection-start-line="274" selection-start-column="64" selection-end-line="274" selection-end-column="64" />
+            <state vertical-scroll-proportion="4.160211">
+              <caret line="186" column="40" selection-start-line="186" selection-start-column="40" selection-end-line="186" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1856,7 +1818,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2131,11 +2092,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane />
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2379,7 +2341,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.4969605" order="7" side_tool="false" content_ui="tabs" />
@@ -2434,6 +2396,42 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/derzapp/myfacedetection/FisherFaceRecognizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="50" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/custom/CustomJavaCameraView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/controller/FaceDelimiters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2794,8 +2792,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/br/com/pucgo/facedetection/callbacks/FaceDetect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.140845">
-          <caret line="274" column="64" selection-start-line="274" selection-start-column="64" selection-end-line="274" selection-end-column="64" />
+        <state vertical-scroll-proportion="4.160211">
+          <caret line="186" column="40" selection-start-line="186" selection-start-column="40" selection-end-line="186" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
