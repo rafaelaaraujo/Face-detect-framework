@@ -20,13 +20,13 @@ OPENCV_INSTALL_MODULES:=off
 OPENCV_LIB_TYPE:=STATIC
 include /Users/egomez/dev/OpenCV4AndroidWorkspace/OpenCV-android-sdk/sdk/native/jni/OpenCV.mk
 
-LOCAL_SRC_FILES  := DetectionBasedTracker.cpp
+LOCAL_SRC_FILES  := DetectionBasedTracker.cpp/ EmoDetector.cpp
 
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)
 
 LOCAL_LDLIBS +=  -llog -ldl
 LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib -llog
-LOCAL_MODULE     := detection_based_tracker
+LOCAL_MODULE     := app
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -37,8 +37,8 @@ include $(BUILD_SHARED_LIBRARY)
 #OPENCV_INSTALL_MODULES:=off
 #OPENCV_LIB_TYPE:=SHARED
 #include ../../sdk/native/jni/OpenCV.mk
-#LOCAL_SRC_FILES  := DetectionBasedTracker_jni.cpp
+#LOCAL_SRC_FILES  := DetectionBasedTracker_jni.cpp /EmoDetector.cpp
 #LOCAL_C_INCLUDES += $(LOCAL_PATH)
 #LOCAL_LDLIBS     += -llog -ldl
-#LOCAL_MODULE     := detection_based_tracker
+#LOCAL_MODULE     := app
 #include $(BUILD_SHARED_LIBRARY)

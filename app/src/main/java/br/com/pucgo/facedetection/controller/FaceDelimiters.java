@@ -1,8 +1,13 @@
 package br.com.pucgo.facedetection.controller;
 
-import br.com.pucgo.facedetection.enumerator.FaceMovementEnum;
 
 import org.opencv.core.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.pucgo.facedetection.enumerator.FaceMovementEnum;
 
 public class FaceDelimiters {
 
@@ -33,9 +38,15 @@ public class FaceDelimiters {
     public int mouthBotline;
     public Point mouthTopLeft;
     public Point mouthBotRight;
+    public HashMap<String, Integer> emotion = new HashMap<>();
 
     public static final int FACE_MAX_MOVEMENT = 40;
     private final int FACE_ALTERNATION_THRESH = 2;
+    private ArrayList<Point> facePoints = new ArrayList<>();
+
+    public ArrayList<Point> getFacePoints() {
+        return facePoints;
+    }
 
     public FaceDelimiters(int age, int width, int height, int xpt, int ypt, int life) {
 
@@ -59,10 +70,15 @@ public class FaceDelimiters {
         this.rights = 0;
         this.ups = 0;
         this.downs = 0;
+        this.emotion.put("neutral", 0);
+        this.emotion.put("anger", 0);
+        this.emotion.put("happy", 0);
+        this.emotion.put("disgust", 0);
+        this.emotion.put("surprise", 0);
     }
 
-    public void updateFace(int width, int height, int xpt, int ypt) {
-
+    public void updateFace(int width, int height, int xpt, int ypt, String emotionUpdate) {
+        facePoints.clear();
         FaceMovementEnum turnDir = getTurnDir(xpt, xpt, ypt, ypt, width, width, height, height);
         updateMoveState(turnDir);
 
@@ -74,6 +90,12 @@ public class FaceDelimiters {
         life = 0;
         updateEyes();
         updateMouth();
+
+        for (Map.Entry<String, Integer> entry : emotion.entrySet()) {
+            if (entry.getKey().toLowerCase().equals(emotionUpdate.toLowerCase())) {
+                emotion.put(entry.getKey(), entry.getValue() + 1);
+            }
+        }
     }
 
     private void updateEyes() {
@@ -84,6 +106,11 @@ public class FaceDelimiters {
         eyeLeft2 = new Point(xpt + ((width * 3) / 8), eyeBotline);
         eyeRight1 = new Point(xpt + ((width * 5) / 8), eyeTopline);
         eyeRight2 = new Point(xpt + ((width * 4) / 5), eyeBotline);
+
+        facePoints.add(eyeLeft1);
+        facePoints.add(eyeLeft2);
+        facePoints.add(eyeRight1);
+        facePoints.add(eyeRight2);
     }
 
     private void updateMouth() {
@@ -91,6 +118,9 @@ public class FaceDelimiters {
         mouthBotline = ypt + height;
         mouthTopLeft = new Point(xpt + width / 5, mouthTopline);
         mouthBotRight = new Point(xpt + (width * 4) / 5, mouthBotline);
+
+        facePoints.add(mouthTopLeft);
+        facePoints.add(mouthBotRight);
     }
 
     public boolean isShaking() {
@@ -318,6 +348,7 @@ public class FaceDelimiters {
     }
 
     public boolean isTooOld() {
+//        int FACE_MAX_LIFE = 1;
         return life > 1;
     }
 
