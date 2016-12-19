@@ -135,7 +135,8 @@ public class FaceDetect extends CameraCallback {
     };
 
     public void initAsyncOpenCv() {
-        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, context, mLoaderCallback);
+        Context ctx = this.context;
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, ctx, mLoaderCallback);
     }
 
     public void disableCameraView() {
