@@ -191,3 +191,4 @@ JNIEXPORT void JNICALL Java_com_derzapp_myfacedetection_DetectionBasedTracker_na
     }
     LOGD("Java_org_opencv_samples_facedetect_DetectionBasedTracker_nativeDetect exit");
 }
+

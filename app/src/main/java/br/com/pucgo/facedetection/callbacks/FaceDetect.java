@@ -124,6 +124,7 @@ public class FaceDetect extends CameraCallback {
                     iniciaFaceDetection(true);
                     fisherFaceRecognizer = new FisherFaceRecognizer(context);
                     fisherFaceRecognizer.trainClassifier();
+
                     break;
 
                 default:
@@ -134,8 +135,7 @@ public class FaceDetect extends CameraCallback {
     };
 
     public void initAsyncOpenCv() {
-        Context ctx = this.context;
-        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, ctx, mLoaderCallback);
+        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, context, mLoaderCallback);
     }
 
     public void disableCameraView() {
@@ -169,7 +169,7 @@ public class FaceDetect extends CameraCallback {
         MatOfRect faces = new MatOfRect();
         MatOfRect facesFliped = new MatOfRect();
 
-        return getMat(mRgba,mGray,faces, facesFliped);
+        return getMat(mRgba, mGray, faces, facesFliped);
     }
 
     private Mat getMat(Mat mRgba, Mat mGray, MatOfRect faces, MatOfRect facesFliped) {
