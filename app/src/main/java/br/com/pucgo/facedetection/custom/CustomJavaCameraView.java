@@ -28,5 +28,4 @@ public class CustomJavaCameraView extends JavaCameraView {
         params.setColorEffect(effect);
         mCamera.setParameters(params);
     }
-
 }

@@ -1,25 +1,34 @@
 package br.com.pucgo.facedetection.callbacks;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.derzapp.myfacedetection.DetectionBasedTracker;
+import com.derzapp.myfacedetection.FisherFaceRecognizer;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 import java.io.File;
@@ -29,8 +38,13 @@ import java.io.InputStream;
 import java.util.LinkedList;
 
 import br.com.pucgo.facedetection.R;
-import br.com.pucgo.facedetection.controller.FaceDrawing;
+import br.com.pucgo.facedetection.controller.FaceDelimiters;
 import br.com.pucgo.facedetection.custom.CustomJavaCameraView;
+
+import static org.opencv.imgproc.Imgproc.bilateralFilter;
+import static org.opencv.imgproc.Imgproc.cvtColor;
+import static org.opencv.imgproc.Imgproc.equalizeHist;
+import static org.opencv.imgproc.Imgproc.resize;
 
 
 /**
@@ -39,32 +53,46 @@ import br.com.pucgo.facedetection.custom.CustomJavaCameraView;
  */
 public class FaceDetect extends CameraCallback {
 
-    private Context context;
-
-    private final int BACK_CAMERA = 0;
-    private final int FRONT_CAMERA = 1;
-
+    private Activity context;
     private String[] detectorNameCamera;
     private int detectorTypeCamera = 0;
     private MenuItem cameraOrientation;
+    private LinkedList<FaceDelimiters> trackedFaces = new LinkedList<>();
 
-    private CascadeClassifier javaDetector;
-    private DetectionBasedTracker nativeDetector;
-    private int absoluteFaceSize = 0;
-    private LinkedList<FaceDrawing> trackedFaceDrawings = new LinkedList<>();
-    private Mat mRgba;
-    private Mat mGray;
-
-    //Constantes
+    //CONSTANTES
     private final Scalar RED = new Scalar(255, 0, 0, 255);
     private final Scalar ORANGE = new Scalar(255, 103, 0, 255);
     private final Scalar MAGENTA = new Scalar(255, 0, 255, 255);
     private final Scalar GREEN = new Scalar(0, 255, 0, 255);
     private final Scalar BLUE = new Scalar(0, 0, 255, 255);
     private final Scalar YELLOW = new Scalar(255, 255, 0, 255);
+    public final int BACK_CAMERA = 0;
+    public final int FRONT_CAMERA = 1;
+    public NumberProgressBar progressHappy;
+    public NumberProgressBar progressAnger;
+    public NumberProgressBar progressSurprise;
+    public NumberProgressBar progressNeutral;
+    public NumberProgressBar progressDisgust;
+    public FisherFaceRecognizer fisherFaceRecognizer;
 
-    public FaceDetect(Context context) {
-        this.context = context;
+    private CascadeClassifier javaDetector;
+    private DetectionBasedTracker nativeDetector;
+    private int absoluteFaceSize = 0;
+    private Mat mRgba;
+    private Mat mGray;
+    private int i = 0;
+
+
+
+    public FaceDetect(Activity activity) {
+        this.context = activity;
+        trackedFaces = new LinkedList<>();
+        progressHappy = (NumberProgressBar) activity.findViewById(R.id.progress_happy);
+        progressAnger = (NumberProgressBar) activity.findViewById(R.id.progress_anger);
+        progressSurprise = (NumberProgressBar) activity.findViewById(R.id.progress_surprise);
+        progressNeutral = (NumberProgressBar) activity.findViewById(R.id.progress_neutral);
+        progressDisgust = (NumberProgressBar) activity.findViewById(R.id.progress_disgust);
+
         detectorNameCamera = new String[2];
         detectorNameCamera[FRONT_CAMERA] = "front camera";
         detectorNameCamera[BACK_CAMERA] = "back camera";
@@ -77,10 +105,11 @@ public class FaceDetect extends CameraCallback {
 
     /**
      * Altera para camera frontal ou para traseira
-     *
+     * BACK CAMERA 0
+     * FRONT CAMERA 1
      * @param camera camera que deseja usar
      */
-    private void setCamera(int camera) {
+    public void setCamera(int camera) {
         if (camera == BACK_CAMERA) {
             cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
             detectorTypeCamera = FRONT_CAMERA;
@@ -96,7 +125,10 @@ public class FaceDetect extends CameraCallback {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     System.loadLibrary("detection_based_tracker");
-                    iniciaFaceDetection();
+                    iniciaFaceDetection(true);
+                    fisherFaceRecognizer = new FisherFaceRecognizer(context);
+                    fisherFaceRecognizer.trainClassifier();
+
                     break;
 
                 default:
@@ -141,69 +173,80 @@ public class FaceDetect extends CameraCallback {
         MatOfRect faces = new MatOfRect();
         MatOfRect facesFliped = new MatOfRect();
 
+        return getMat(mRgba, mGray, faces, facesFliped);
+    }
+
+    private Mat getMat(Mat mRgba, Mat mGray, MatOfRect faces, MatOfRect facesFliped) {
+
         if (javaDetector != null)
             javaDetector.detectMultiScale(mGray, faces, 1.1, 2, 2,
                     new Size(absoluteFaceSize, absoluteFaceSize), new Size());
 
         Core.flip(faces, facesFliped, 1);
-
+//
         Rect[] facesArray = facesFliped.toArray();
         for (Rect aFacesArray : facesArray) {
 
-            //Ages all trackedFaceDrawings
-            for (FaceDrawing f : trackedFaceDrawings) {
+            //Ages all trackedFaces
+            for (FaceDelimiters f : trackedFaces) {
                 f.updateLife();
             }
 
             //Remove expired faces
-            LinkedList<FaceDrawing> trackedFacesTemp = new LinkedList<>();
-            for (FaceDrawing f : trackedFaceDrawings) {
+            LinkedList<FaceDelimiters> trackedFacesTemp = new LinkedList<>();
+            for (FaceDelimiters f : trackedFaces) {
                 if (!f.isTooOld()) {
                     trackedFacesTemp.add(f);
                 }
             }
 
-            trackedFaceDrawings.clear();
+            trackedFaces.clear();
 
             if (trackedFacesTemp.size() > 0) {
-                trackedFaceDrawings = trackedFacesTemp;
+                trackedFaces = trackedFacesTemp;
             }
 
             boolean matchedFace = false;
-            FaceDrawing mf = null;
+            FaceDelimiters mf = null;
 
             Point pt1 = aFacesArray.tl();
             Point pt2 = aFacesArray.br();
 
-            //check if there are trackedFaceDrawings
+            //check if there are trackedFaces
             double IMAGE_SCALE = 1;
-            if (trackedFaceDrawings.size() > 0) {
+            if (trackedFaces.size() > 0) {
+
                 //each face being tracked
-                for (FaceDrawing f : trackedFaceDrawings) {
+                for (FaceDelimiters f : trackedFaces) {
                     //the face is found (small movement)
-                    if ((Math.abs(f.xpt - pt1.x) < FaceDrawing.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDrawing.FACE_MAX_MOVEMENT)) {
+                    if ((Math.abs(f.xpt - pt1.x) < FaceDelimiters.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDelimiters.FACE_MAX_MOVEMENT)) {
                         matchedFace = true;
-                        f.updateFace( aFacesArray.width , aFacesArray.height, (int) pt1.x, (int) pt1.y);
+                        String label = analizarFace(mRgba, aFacesArray);
+                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y, analizarFace(mRgba, aFacesArray));
                         mf = f;
                         break;
                     }
                 }
+
                 //if face not found, add a new face
                 if (!matchedFace) {
-                    FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                    trackedFaceDrawings.add(f);
+                    FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                    trackedFaces.add(f);
                     mf = f;
                 }
 
             } else { //No tracked faces: adding one
-                FaceDrawing f = new FaceDrawing(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
-                trackedFaceDrawings.add(f);
+                FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                trackedFaces.add(f);
                 mf = f;
             }
+
+
             //where to draw face and properties
             if (mf.age > 5) {
                 //draw attention line
                 int SCALE = 1;
+
                 Point lnpt1 = new Point(mf.xpt * SCALE, (mf.ypt * SCALE - 5) - 5);
                 Point lnpt2;
                 if (mf.age > mf.width) {
@@ -225,8 +268,28 @@ public class FaceDetect extends CameraCallback {
                 //drawing mouth
                 Core.rectangle(mRgba, mf.mouthTopLeft, mf.mouthBotRight, ORANGE, 3, 8, 0);
             }
+            setUIText(mf);
+
         }
+
         return mRgba;
+    }
+
+    private synchronized void setUIText(final FaceDelimiters face) {
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                context.txtEmotions.setText(label);
+//                context.txtAttention.setText(String.valueOf(age));
+//                context.txtFaces.setText(String.valueOf(size));
+                progressNeutral.setProgress(face.emotion.get("neutral"));
+                progressAnger.setProgress(face.emotion.get("anger"));
+                progressHappy.setProgress(face.emotion.get("happy"));
+                progressSurprise.setProgress(face.emotion.get("surprise"));
+                progressDisgust.setProgress(face.emotion.get("disgust"));
+
+            }
+        });
     }
 
     public void setResolution(int width, int height) {
@@ -254,7 +317,7 @@ public class FaceDetect extends CameraCallback {
         cameraOrientation = menu.add(detectorNameCamera[BACK_CAMERA]);
     }
 
-    public void iniciaFaceDetection() {
+    public void iniciaFaceDetection(boolean configureCamera) {
         String TAG = "OCVSample::Activity";
         try {
             // load cascade file from application resources
@@ -282,8 +345,10 @@ public class FaceDetect extends CameraCallback {
 
             cascadeDir.delete();
 
-            cameraView.enableView();
-            cameraView.enableFpsMeter();
+            if (configureCamera) {
+                cameraView.enableView();
+                cameraView.enableFpsMeter();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -291,11 +356,107 @@ public class FaceDetect extends CameraCallback {
         }
     }
 
-    private Scalar getColor(FaceDrawing mf) {
+    public void iniciaFaceDetection(CameraBridgeViewBase openCvCameraView, int width, int height) {
+        String TAG = "OCVSample::Activity";
+        try {
+            // load cascade file from application resources
+            InputStream is = context.getResources().openRawResource(R.raw.lbpcascade_frontalface);
+            File cascadeDir = context.getDir("cascade", Context.MODE_PRIVATE);
+            File mCascadeFile = new File(cascadeDir, "lbpcascade_frontalface.xml");
+            FileOutputStream os = new FileOutputStream(mCascadeFile);
+
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            is.close();
+            os.close();
+
+            javaDetector = new CascadeClassifier(mCascadeFile.getAbsolutePath());
+            if (javaDetector.empty()) {
+                Log.e(TAG, "Failed to load cascade classifier");
+                javaDetector = null;
+            } else
+                Log.i(TAG, "Loaded cascade classifier from " + mCascadeFile.getAbsolutePath());
+
+            nativeDetector = new DetectionBasedTracker(mCascadeFile.getAbsolutePath(), 0);
+
+            cascadeDir.delete();
+
+            openCvCameraView.setMaxFrameSize(width, height);
+            openCvCameraView.enableView();
+            openCvCameraView.enableFpsMeter();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "Failed to load cascade. Exception thrown: " + e);
+        }
+    }
+
+    private Scalar getColor(FaceDelimiters mf) {
         if (mf.isNodding()) return GREEN;
         else if (mf.isShaking()) return RED;
         else if (mf.isStill()) return BLUE;
         else return YELLOW;
     }
+
+
+    public Bitmap analysePicture(Uri selectedImageUri) {
+        Bitmap bitmap = null;
+        Mat imageMat = new Mat(100, 100, CvType.CV_8U, new Scalar(4));
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), selectedImageUri);
+            Utils.bitmapToMat(bitmap, imageMat);
+            Utils.matToBitmap(detectface(imageMat), bitmap);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    Mat detectface(Mat inputFrame) {
+
+        MatOfRect faces = new MatOfRect();
+        MatOfRect facesFliped = new MatOfRect();
+
+        if (absoluteFaceSize == 0) {
+            int height = inputFrame.rows();
+            float relativeFaceSize = 0.2f;
+
+            if (Math.round(height * relativeFaceSize) > 0) {
+                absoluteFaceSize = Math.round(height * relativeFaceSize);
+            }
+            nativeDetector.setMinFaceSize(absoluteFaceSize);
+        }
+        return getMat(inputFrame,inputFrame,faces,facesFliped);
+    }
+
+    private synchronized String analizarFace(Mat mat, Rect face_i) {
+        Mat mIntermediateMat = new Mat();
+        cvtColor(mat, mIntermediateMat, Imgproc.COLOR_BGR2GRAY);
+        Mat face = new Mat(mIntermediateMat, face_i);
+        Mat face_resized = new Mat();
+
+        //resize image
+        resize(face, face_resized, new Size(350, 350));
+
+        // histogram equalization
+//        face_resized = getImageEqualize(face_resized);
+        equalizeHist(face_resized, face_resized);
+
+        Mat filtered = new Mat(face_resized.size(), CvType.CV_8U);
+
+        //smooth
+        bilateralFilter(face_resized, filtered, 0, 20.0, 2.0);
+
+        //Mat faceEllipse = ellipseFace(face_resized);
+        //save image
+       // SaveImage(filtered);
+
+        return fisherFaceRecognizer.recognizeFace(filtered);
+    }
+
 
 }

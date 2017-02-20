@@ -1,5 +1,6 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 import com.android.build.gradle.tasks.NdkCompile
+
 apply plugin: 'com.android.library'
 
 android {
@@ -11,7 +12,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-        ndk {moduleName "NativeCode"}
+        ndk { moduleName "NativeCode"
+              moduleName "facerec"}
     }
 
     sourceSets.main {
@@ -29,12 +31,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/'] } }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.github.RafaelaAraujo:OpenCv:3.1v'
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    compile files('src/main/libs/jcodec-0.1.6-3.jar')
+    compile files('src/main/libs/junit.jar/junit.jar')
 }
 
 group = 'br.com.pucgo.facedetection'

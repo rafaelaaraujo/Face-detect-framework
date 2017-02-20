@@ -18,7 +18,7 @@ include $(CLEAR_VARS)
 OPENCV_CAMERA_MODULES:=on
 OPENCV_INSTALL_MODULES:=off
 OPENCV_LIB_TYPE:=STATIC
-include /Users/egomez/dev/OpenCV4AndroidWorkspace/OpenCV-android-sdk/sdk/native/jni/OpenCV.mk
+include D:/Desenvolvimento/sdk/opencv-android-sdk/native/jni/OpenCV.mk
 
 LOCAL_SRC_FILES  := DetectionBasedTracker.cpp
 
@@ -26,19 +26,24 @@ LOCAL_SRC_FILES  := DetectionBasedTracker.cpp
 
 LOCAL_LDLIBS +=  -llog -ldl
 LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib -llog
-LOCAL_MODULE     := detection_based_tracker
+LOCAL_MODULE     := app
 
 include $(BUILD_SHARED_LIBRARY)
 
+include $(CLEAR_VARS)
+#opencv
+LOCAL_C_INCLUDES:= D:/Desenvolvimento/sdk/opencv-android-sdk/native/jni/include
+OPENCVROOT:= D:/Desenvolvimento/sdk/opencv-android-sdk
+OPENCV_CAMERA_MODULES:=on
+OPENCV_INSTALL_MODULES:=of
+OPENCV_LIB_TYPE:=SHARED
+include D:/Desenvolvimento/sdk/opencv-android-sdk/native/jni/OpenCV.mk
 
-#LOCAL_PATH := $(call my-dir)
-#include $(CLEAR_VARS)
-#OPENCV_CAMERA_MODULES:=off
-#OPENCV_INSTALL_MODULES:=off
-#OPENCV_LIB_TYPE:=SHARED
-#include ../../sdk/native/jni/OpenCV.mk
-#LOCAL_SRC_FILES  := DetectionBasedTracker_jni.cpp
-#LOCAL_C_INCLUDES += $(LOCAL_PATH)
-#LOCAL_LDLIBS     += -llog -ldl
-#LOCAL_MODULE     := detection_based_tracker
-#include $(BUILD_SHARED_LIBRARY)
+LOCAL_SRC_FILES := facerec.cpp
+LOCAL_LDLIBS += -llog  -ldl
+LOCAL_MODULE := facerec
+#LOCAL_SRC_FILES := facerec.so
+#LOCAL_CFLAGS += -I<path>, talvez inserir
+
+include $(BUILD_SHARED_LIBRARY)
+
