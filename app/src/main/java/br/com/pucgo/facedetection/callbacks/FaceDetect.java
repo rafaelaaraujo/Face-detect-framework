@@ -38,7 +38,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 
 import br.com.pucgo.facedetection.R;
-import br.com.pucgo.facedetection.controller.FaceDelimiters;
+import br.com.pucgo.facedetection.controller.Face;
 import br.com.pucgo.facedetection.custom.CustomJavaCameraView;
 
 import static org.opencv.imgproc.Imgproc.bilateralFilter;
@@ -57,7 +57,7 @@ public class FaceDetect extends CameraCallback {
     private String[] detectorNameCamera;
     private int detectorTypeCamera = 0;
     private MenuItem cameraOrientation;
-    private LinkedList<FaceDelimiters> trackedFaces = new LinkedList<>();
+    private LinkedList<Face> trackedFaces = new LinkedList<>();
 
     //CONSTANTES
     private final Scalar RED = new Scalar(255, 0, 0, 255);
@@ -188,13 +188,13 @@ public class FaceDetect extends CameraCallback {
         for (Rect aFacesArray : facesArray) {
 
             //Ages all trackedFaces
-            for (FaceDelimiters f : trackedFaces) {
+            for (Face f : trackedFaces) {
                 f.updateLife();
             }
 
             //Remove expired faces
-            LinkedList<FaceDelimiters> trackedFacesTemp = new LinkedList<>();
-            for (FaceDelimiters f : trackedFaces) {
+            LinkedList<Face> trackedFacesTemp = new LinkedList<>();
+            for (Face f : trackedFaces) {
                 if (!f.isTooOld()) {
                     trackedFacesTemp.add(f);
                 }
@@ -207,7 +207,7 @@ public class FaceDetect extends CameraCallback {
             }
 
             boolean matchedFace = false;
-            FaceDelimiters mf = null;
+            Face mf = null;
 
             Point pt1 = aFacesArray.tl();
             Point pt2 = aFacesArray.br();
@@ -217,12 +217,12 @@ public class FaceDetect extends CameraCallback {
             if (trackedFaces.size() > 0) {
 
                 //each face being tracked
-                for (FaceDelimiters f : trackedFaces) {
+                for (Face f : trackedFaces) {
                     //the face is found (small movement)
-                    if ((Math.abs(f.xpt - pt1.x) < FaceDelimiters.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < FaceDelimiters.FACE_MAX_MOVEMENT)) {
+                    if ((Math.abs(f.xpt - pt1.x) < Face.FACE_MAX_MOVEMENT) && (Math.abs(f.ypt - pt1.y) < Face.FACE_MAX_MOVEMENT)) {
                         matchedFace = true;
-                        String label = analizarFace(mRgba, aFacesArray);
-                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y, analizarFace(mRgba, aFacesArray));
+                        String label = analizyFace(mRgba, aFacesArray);
+                        f.updateFace(aFacesArray.width, aFacesArray.height, (int) pt1.x, (int) pt1.y, analizyFace(mRgba, aFacesArray));
                         mf = f;
                         break;
                     }
@@ -230,13 +230,13 @@ public class FaceDetect extends CameraCallback {
 
                 //if face not found, add a new face
                 if (!matchedFace) {
-                    FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                    Face f = new Face(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
                     trackedFaces.add(f);
                     mf = f;
                 }
 
             } else { //No tracked faces: adding one
-                FaceDelimiters f = new FaceDelimiters(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
+                Face f = new Face(0, (int) (aFacesArray.width * IMAGE_SCALE), (int) (aFacesArray.height * IMAGE_SCALE), (int) pt1.x, (int) pt1.y, 0);
                 trackedFaces.add(f);
                 mf = f;
             }
@@ -275,13 +275,10 @@ public class FaceDetect extends CameraCallback {
         return mRgba;
     }
 
-    private synchronized void setUIText(final FaceDelimiters face) {
+    private synchronized void setUIText(final Face face) {
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                context.txtEmotions.setText(label);
-//                context.txtAttention.setText(String.valueOf(age));
-//                context.txtFaces.setText(String.valueOf(size));
                 progressNeutral.setProgress(face.emotion.get("neutral"));
                 progressAnger.setProgress(face.emotion.get("anger"));
                 progressHappy.setProgress(face.emotion.get("happy"));
@@ -394,7 +391,7 @@ public class FaceDetect extends CameraCallback {
         }
     }
 
-    private Scalar getColor(FaceDelimiters mf) {
+    private Scalar getColor(Face mf) {
         if (mf.isNodding()) return GREEN;
         else if (mf.isShaking()) return RED;
         else if (mf.isStill()) return BLUE;
@@ -433,7 +430,7 @@ public class FaceDetect extends CameraCallback {
         return getMat(inputFrame,inputFrame,faces,facesFliped);
     }
 
-    private synchronized String analizarFace(Mat mat, Rect face_i) {
+    private synchronized String analizyFace(Mat mat, Rect face_i) {
         Mat mIntermediateMat = new Mat();
         cvtColor(mat, mIntermediateMat, Imgproc.COLOR_BGR2GRAY);
         Mat face = new Mat(mIntermediateMat, face_i);

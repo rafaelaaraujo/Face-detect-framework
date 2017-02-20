@@ -40,7 +40,7 @@ import br.com.pucgo.facedetection.enumerator.ViewModeEnum;
  * Created by Rafaela
  * on 06/04/2016.
  */
-public class Zoom extends CameraCallback implements  View.OnTouchListener, RecognitionListener {
+public class Zoom extends CameraCallback implements View.OnTouchListener, RecognitionListener {
 
     private SpeechRecognizer speech = null;
     private Intent recognizerIntent;
@@ -68,9 +68,6 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     Log.i("zoom", "OpenCV loaded successfully");
-
-                    //controller.mOpenCvCameraView.setMaxFrameSize(width, height);
-
                     cameraView.setOnTouchListener(Zoom.this);
                     cameraView.enableView();
 
@@ -115,7 +112,7 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         });
     }
 
-    public void disableCameraView(){
+    public void disableCameraView() {
         if (cameraView != null)
             cameraView.disableView();
 
@@ -126,10 +123,11 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         sd.unregister();
     }
 
-    public void initAsyncOpenCv(){
+    public void initAsyncOpenCv() {
         OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, context, mLoaderCallback);
         sd.register();
     }
+
     public void onCameraViewStarted(int width, int height) {
         mIntermediateMat = new Mat();
         // Fill sepia kernel
@@ -137,7 +135,8 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         mSepiaKernel.put(0, 0, /* R */0.189f, 0.769f, 0.393f, 0f);
         mSepiaKernel.put(1, 0, /* G */0.168f, 0.686f, 0.349f, 0f);
         mSepiaKernel.put(2, 0, /* B */0.131f, 0.534f, 0.272f, 0f);
-        mSepiaKernel.put(3, 0, /* A */0.000f, 0.000f, 0.000f, 1f);    }
+        mSepiaKernel.put(3, 0, /* A */0.000f, 0.000f, 0.000f, 1f);
+    }
 
     public void onCameraViewStopped() {
         if (mIntermediateMat != null)
@@ -168,7 +167,7 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         repositConer(xpos, ypos);
     }
 
-    public void setCameraView(CustomJavaCameraView cameraView){
+    public void setCameraView(CustomJavaCameraView cameraView) {
         this.cameraView = cameraView;
         cameraView.setVisibility(SurfaceView.VISIBLE);
         cameraView.setCvCameraViewListener(this);
@@ -242,44 +241,33 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         String message;
         switch (errorCode) {
             case SpeechRecognizer.ERROR_AUDIO:
-                message = "Audio recording error";
-                break;
+                return "Audio recording error";
             case SpeechRecognizer.ERROR_CLIENT:
-                message = "Client side error";
-                break;
+                return "Client side error";
             case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "Insufficient permissions";
-                break;
+                return "Insufficient permissions";
             case SpeechRecognizer.ERROR_NETWORK:
-                message = "Network error";
-                break;
+                return "Network error";
             case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "Network timeout";
-                break;
+                return "Network timeout";
             case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "No match";
-                break;
+                return "No match";
             case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RecognitionService busy";
-                break;
+                return "RecognitionService busy";
             case SpeechRecognizer.ERROR_SERVER:
-                message = "error from server";
-                break;
+                return "error from server";
             case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "No speech input";
-                break;
+                return "No speech input";
             default:
-                message = "Didn't understand, please try again.";
-                break;
+                return "Didn't understand, please try again.";
         }
-        return message;
     }
 
     public void showPreviewImage(boolean show) {
         cameraView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    public void initMenuCameraChoice(Menu menu){
+    public void initMenuCameraChoice(Menu menu) {
         List<String> effects = cameraView.getEffectList();
 
         if (effects == null) {
@@ -321,8 +309,8 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
         mZoomItems[4] = mZoomMenu.add(5, 0, Menu.NONE, "0.3");
     }
 
-    public void menuSelected(MenuItem item){
-        switch (item.getGroupId()){
+    public void menuSelected(MenuItem item) {
+        switch (item.getGroupId()) {
             case 1:
                 cameraView.setEffect((String) item.getTitle());
                 Log.i("zoom", "The String is:" + item.getTitle());
@@ -340,7 +328,8 @@ public class Zoom extends CameraCallback implements  View.OnTouchListener, Recog
                 break;
         }
     }
-    public void keyEvent(int keyCode, KeyEvent event){
+
+    public void keyEvent(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
 

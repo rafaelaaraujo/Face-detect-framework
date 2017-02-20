@@ -32,23 +32,21 @@ import br.com.pucgo.facedetection.enumerator.ViewModeEnum;
  * Created by Rafaela
  * on 06/04/2016.
  */
-public class Split extends CameraCallback{
+public class Split extends CameraCallback implements View.OnTouchListener {
 
     private final String TAG = "Zoom:View";
     private float lr, lr2, tp, tp2, rr, rr2;
     private float resizefactor = 0.25f;
     private int midWidth;
-    public CustomJavaCameraView cameraView;
-    public Mat mIntermediateMat;
-    public ViewModeEnum viewMode = ViewModeEnum.RGBA;
-    //    public int height;
-//    public int width;
+    private CustomJavaCameraView cameraView;
+    private Mat mIntermediateMat;
+    private ViewModeEnum viewMode = ViewModeEnum.RGBA;
     private Context context;
 
-    public AudioManager audio;
+    private AudioManager audio;
     private int volume_level;
-    public float alpha;
-    public int beta;
+    private float alpha;
+    private int beta;
 
     public Split(Context context) {
         this.context = context;
@@ -61,23 +59,7 @@ public class Split extends CameraCallback{
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
 
-//        cameraView.setMaxFrameSize(width, height);
-
-                    //touch listener
-                    cameraView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-
-                            int xpos, ypos;
-                            xpos = (int) event.getX();
-                            ypos = (int) event.getY();
-
-                            if (xpos >= 0 && xpos <= cameraView.getWidth() && ypos >= 0 && ypos <= cameraView.getHeight()) {
-                                repositionCorner(xpos);
-                            }
-                            return false;
-                        }
-                    });
+                    cameraView.setOnTouchListener(Split.this);
                     cameraView.enableView();
                     viewMode = ViewModeEnum.SPLIT_FULL_VIEW;
                     cameraView.setEffect("sepia");
@@ -181,68 +163,44 @@ public class Split extends CameraCallback{
 
             case SPLIT_FULL_VIEW:
 
-                Imgproc.resize(wholeScreen, corner1_Shrinked, corner1_Shrinked.size());
-                Imgproc.resize(wholeScreen, corner2_Shrinked, corner2_Shrinked.size());
-
                 output.convertTo(rgba, -1, alpha, beta);
+                addCounter(rgba, output, corner1, corner2, wholeScreen, corner1_Shrinked, corner2_Shrinked);
 
-                corner1_Shrinked.release();
-                wholeScreen.release();
-                corner1.release();
-                corner2_Shrinked.release();
-                corner2.release();
-                output.release();
                 break;
 
             case CANNY:
-                Imgproc.resize(wholeScreen, corner1_Shrinked, corner1_Shrinked.size());
 
                 Imgproc.Canny(wholeScreen, mIntermediateMat, 50, 200);
                 Imgproc.cvtColor(mIntermediateMat, wholeScreen, Imgproc.COLOR_GRAY2BGRA, 4);
+                addCounter(rgba, output, corner1, corner2, wholeScreen, corner1_Shrinked, corner2_Shrinked);
 
-                Imgproc.resize(wholeScreen, corner2_Shrinked, corner2_Shrinked.size());
-
-                corner1_Shrinked.release();
-                wholeScreen.release();
-                corner1.release();
-                corner2_Shrinked.release();
-                corner2.release();
-                output.copyTo(rgba);
-                output.release();
                 break;
 
             case SPLIT_VIEW:
-
-                Imgproc.resize(corner1, corner1_Shrinked, corner1_Shrinked.size());
-                Imgproc.resize(corner2, corner2_Shrinked, corner2_Shrinked.size());
-
-                corner1_Shrinked.release();
-                wholeScreen.release();
-                corner1.release();
-                corner2_Shrinked.release();
-                corner2.release();
-                output.copyTo(rgba);
-                output.release();
+                addCounter(rgba, output, corner1, corner2, wholeScreen, corner1_Shrinked, corner2_Shrinked);
                 break;
 
             case SPLIT_VIEW_1_CANNY:
                 Imgproc.Canny(corner2, mIntermediateMat, 50, 200);
                 Imgproc.cvtColor(mIntermediateMat, corner2, Imgproc.COLOR_GRAY2BGRA, 4);
-
-                Imgproc.resize(corner1, corner1_Shrinked, corner1_Shrinked.size());
-                Imgproc.resize(corner2, corner2_Shrinked, corner2_Shrinked.size());
-
-                corner1_Shrinked.release();
-                wholeScreen.release();
-                corner1.release();
-                corner2_Shrinked.release();
-                corner2.release();
-                output.copyTo(rgba);
-                output.release();
+                addCounter(rgba, output, corner1, corner2, wholeScreen, corner1_Shrinked, corner2_Shrinked);
                 break;
         }
 
         return rgba;
+    }
+
+    private void addCounter(Mat rgba, Mat output, Mat corner1, Mat corner2, Mat wholeScreen, Mat corner1_Shrinked, Mat corner2_Shrinked) {
+        Imgproc.resize(corner1, corner1_Shrinked, corner1_Shrinked.size());
+        Imgproc.resize(corner2, corner2_Shrinked, corner2_Shrinked.size());
+
+        corner1_Shrinked.release();
+        wholeScreen.release();
+        corner1.release();
+        corner2_Shrinked.release();
+        corner2.release();
+        output.copyTo(rgba);
+        output.release();
     }
 
     public void onKeyDown(int keyCode, KeyEvent event){
@@ -382,5 +340,19 @@ public class Split extends CameraCallback{
         tp = (float) (0.5 - aux);
         tp2 = (float) (0.5 + aux);
         repositionCorner(midWidth);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+
+        int xpos, ypos;
+        xpos = (int) motionEvent.getX();
+        ypos = (int) motionEvent.getY();
+
+        if (xpos >= 0 && xpos <= cameraView.getWidth() && ypos >= 0 && ypos <= cameraView.getHeight()) {
+            repositionCorner(xpos);
+        }
+        return false;
+
     }
 }

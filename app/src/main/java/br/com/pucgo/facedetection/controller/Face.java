@@ -9,7 +9,7 @@ import java.util.Map;
 
 import br.com.pucgo.facedetection.enumerator.FaceMovementEnum;
 
-public class FaceDelimiters {
+public class Face {
 
     public int age = 0;
     public int width = 0;
@@ -48,7 +48,7 @@ public class FaceDelimiters {
         return facePoints;
     }
 
-    public FaceDelimiters(int age, int width, int height, int xpt, int ypt, int life) {
+    public Face(int age, int width, int height, int xpt, int ypt, int life) {
 
         this.age = age;
         this.width = width;
