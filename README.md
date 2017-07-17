@@ -1,3 +1,5 @@
+<b>Framework for Monitoring Attention and Detection of Expressions of People with Down's Syndrome</b>
+
 [![](https://jitpack.io/v/rafaelaaraujo/faceDetect.svg)](https://jitpack.io/#rafaelaaraujo/faceDetect)
 
 This framework supports biofeedback of application users for the
