@@ -1,4 +1,4 @@
-<b>Framework for Monitoring Attention and Detection of Expressions of People with Down's Syndrome</b>
+#Framework for Monitoring Attention and Detection of Expressions of People with Down's Syndrome
 
 [![](https://jitpack.io/v/rafaelaaraujo/Face-detect-framework.svg)](https://jitpack.io/#rafaelaaraujo/Face-detect-framework)
 
