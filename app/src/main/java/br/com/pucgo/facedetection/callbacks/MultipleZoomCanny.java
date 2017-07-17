@@ -49,7 +49,6 @@ public class MultipleZoomCanny extends CameraCallback {
                 case LoaderCallbackInterface.SUCCESS:
                     Log.i(TAG, "OpenCV loaded successfully");
 
-                    //cameraView.setMaxFrameSize(width, height);
                     cameraView.enableView();
                     viewModeEnum = ViewModeEnum.MULTIPLE;
                     cameraView.setEffect("sepia");
@@ -128,19 +127,6 @@ public class MultipleZoomCanny extends CameraCallback {
 
 
         switch (MultipleZoomCanny.viewModeEnum) {
-            case RGBA:
-                break;
-
-            case CANNY:
-                //     rgbaInnerWindow = rgba.submat(top, top + height, left, left + width);
-                //     Imgproc.Canny(rgbaInnerWindow, mIntermediateMat, 80, 90);
-                //     Imgproc.cvtColor(mIntermediateMat, rgbaInnerWindow, Imgproc.COLOR_GRAY2BGRA, 4);
-                //     rgbaInnerWindow.release();
-                break;
-            case SEPIA:
-                break;
-            case ZOOM:
-                break;
             case MULTIPLE:
 
                 Imgproc.Canny(corner1, mIntermediateMat, 50, 200);

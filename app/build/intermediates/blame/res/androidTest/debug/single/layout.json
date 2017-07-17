@@ -292,6 +292,10 @@
         "source": "C:\\Users\\rafha\\OneDrive\\Documentos\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_singlechoice_material.xml"
     },
     {
+        "merged": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\face_detect_surface_view.xml",
+        "source": "C:\\Users\\rafaela.araujo\\Documents\\faceDetect\\app\\build\\intermediates\\bundles\\debug\\res\\layout\\face_detect_surface_view.xml"
+    },
+    {
         "merged": "C:\\Users\\Rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_lines.xml",
         "source": "C:\\Users\\Rafaela\\Documents\\faceDetect\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_lines.xml"
     },

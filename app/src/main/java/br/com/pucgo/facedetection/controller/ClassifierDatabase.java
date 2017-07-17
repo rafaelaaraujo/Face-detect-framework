@@ -144,7 +144,7 @@ public class ClassifierDatabase {
 
     private Mat readImageFile(String path) {
 //        Mat m = new Mat(IMAGE_HEIGHT, IMAGE_WIDTH, CvType.CV_8UC1);
-        Mat m = imread(path, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+        return imread(path, Highgui.CV_LOAD_IMAGE_GRAYSCALE);
 //        try {
 //            File dir = context.getFilesDir();
 //            File imageFile = new File(dir, path);
@@ -156,7 +156,7 @@ public class ClassifierDatabase {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        return m;
+//        return m;
     }
 
     private void writeImageFile(String path, Mat image) {

@@ -10,7 +10,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
-
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
@@ -27,16 +26,16 @@ import java.util.List;
 import br.com.pucgo.facedetection.custom.CustomJavaCameraView;
 import br.com.pucgo.facedetection.enumerator.ViewModeEnum;
 
-import static android.view.KeyEvent.*;
+import static android.view.KeyEvent.KEYCODE_VOLUME_DOWN;
+import static android.view.KeyEvent.KEYCODE_VOLUME_UP;
 
 /**
  * Created by Rafaela
  * on 04/04/2016.
  */
-public class MultipleZoom extends CameraCallback{
+public class MultipleZoom extends CameraCallback {
 
     private Context context;
-
     private Mat mIntermediateMat;
 
     private float alpha;
@@ -58,7 +57,6 @@ public class MultipleZoom extends CameraCallback{
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
-                    //cameraView.setMaxFrameSize(width, height);
                     cameraView.enableView();
 
                     viewModeEnum = ViewModeEnum.MULTIPLE;
@@ -284,8 +282,6 @@ public class MultipleZoom extends CameraCallback{
                 cameraView.setEffect((String) item.getTitle());
                 Log.i("multipleZoom", "The String is:" + item.getTitle());
                 Toast.makeText(context, cameraView.getEffect(), Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
                 break;
             case 3:
                 alpha = Float.parseFloat(item.getTitle().toString());

@@ -34,7 +34,6 @@ import br.com.pucgo.facedetection.controller.CreateMP4Video;
 import br.com.pucgo.facedetection.controller.FramePackage;
 
 /**
- * PUC GO
  * Created by rafaela
  * on 30/06/2016.
  */
