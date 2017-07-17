@@ -7,22 +7,18 @@ package com.derzapp.myfacedetection;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Environment;
 import android.widget.Toast;
-
 
 import org.opencv.core.Mat;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.pucgo.facedetection.controller.ClassifierDatabase;
-import br.com.pucgo.facedetection.enumerator.EmotionEnum;
+import br.com.facedetection.controller.ClassifierDatabase;
+import br.com.facedetection.enumerator.EmotionEnum;
 
 
 public class FisherFaceRecognizer {

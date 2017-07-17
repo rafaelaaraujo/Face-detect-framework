@@ -1,4 +1,3 @@
-import org.apache.tools.ant.taskdefs.condition.Os
 import com.android.build.gradle.tasks.NdkCompile
 
 apply plugin: 'com.android.library'

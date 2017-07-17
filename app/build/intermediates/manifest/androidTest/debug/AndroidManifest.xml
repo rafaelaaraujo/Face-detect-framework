@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.pucgo.facedetection.test" >
+    package="br.com.facedetection.test" >
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -10,8 +10,8 @@
         android:name="android.test.InstrumentationTestRunner"
         android:functionalTest="false"
         android:handleProfiling="false"
-        android:label="Tests for br.com.pucgo.facedetection.test"
-        android:targetPackage="br.com.pucgo.facedetection.test" />
+        android:label="Tests for br.com.facedetection.test"
+        android:targetPackage="br.com.facedetection.test" />
 
     <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
