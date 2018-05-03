@@ -13,7 +13,7 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 ## Scructural Description
 
 <p align="left">
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/archives/blob/master/graph.png" width="600"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/graph.png" width="600"/>
 </p>
 
 
@@ -23,8 +23,8 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 	Using facial knowledge and looking for distinctive brightness gradients of the eye the attention meter can quickly find, detect eyes, and measure the intermittent rate of a face over several frames. Each identified face is given a rating for attention that varies over time. It starts at 0 and increases according to the attention exhibited by the individual.
 
 <p align="left">
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/archives/blob/master/attention_sample.png" width="250"/>
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/archives/blob/master/graph_attention.png" width="250"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/attention_sample.png" width="250"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/graph_attention.png" width="250"/>
 </p>
 
 ## Expression Recognition
@@ -33,5 +33,5 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 
 
 <p align="left">
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/archives/blob/master/expression_sample.jpg" width="500"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/expression_sample.jpg" width="500"/>
 </p>
