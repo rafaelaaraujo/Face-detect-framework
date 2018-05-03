@@ -1,7 +1,7 @@
 # Framework for Monitoring Attention and Detection of Expressions
 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
-[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/LICENSE)
 [![](https://jitpack.io/v/rafaelaaraujo/Face-detect-framework.svg)](https://jitpack.io/#rafaelaaraujo/Face-detect-framework)
 
 This framework supports biofeedback of application users for the
