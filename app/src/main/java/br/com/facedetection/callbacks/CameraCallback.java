@@ -15,7 +15,7 @@ public abstract class CameraCallback implements CameraBridgeViewBase.CvCameraVie
     public CustomJavaCameraView cameraView;
 
     /**
-     * set Camera que sera usada para capturar as imagens
+     * set camera that being used in the application
      *
      * @param cameraView
      */
@@ -30,34 +30,34 @@ public abstract class CameraCallback implements CameraBridgeViewBase.CvCameraVie
     }
 
     /**
-     * receive intent com a resolução
+     * receive intent with camera resolution
      */
     public void setResolution(int width, int height) {
         cameraView.setMaxFrameSize(width, height);
     }
 
     /**
-     * altera efeito da camera conforme selecionado
+     * change camera effect according to the item selected in the menu
+     * @param item selected in menu options
      */
     public void menuSelected(MenuItem item) {
     }
 
     /**
-     * adiciona menu para escolher qual camera usar
+     * creates menu with options for switching between front and back camera
      */
     public void initMenuCameraChoice(Menu menu) {
     }
 
     /**
-     * define se a imagem da camera sera visivel para o usuario ou no
-     *
-     * @param show mostrar imagem
+     * define if camera image will be visible to user
+     * @param show
      */
     public void showPreviewImage(boolean show) {
     }
 
     /**
-     * define se a imagem capturada pela camera será mostrada ou não
+     * desable camera preview
      */
     public void disableCameraView() {
     }
