@@ -12,8 +12,6 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 
 ## Scructural Description
 
-  The abstract class CameraCallBack defines an application template enforcing the classes that extend it to implement their methods and the contracts defined in the CvCameraViewListener interface. These methods are responsible for configuring and retrieving the data from the device’s camera. Likewise, if it is necessary to create a new class to receive data from the camera, the class CameraCallBack just need to be extended, the same way it is done in the class FaceDetect, which is responsible to identify the face, set the attention level and identify the user's emotion. In this relationship, the concepts of inheritance and polymorphism from object-oriented programming are applied. These concepts allow attributes and methods to be shared by classes and implemented in their own way, making it easier to insert new features that also analyze the data obtained from the camera.
-
 <p align="left">
   <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/graph.png" width="600"/>
 </p>
@@ -35,5 +33,5 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 
 
 <p align="left">
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/expression_sample.png" width="500"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/expression_sample.jpg" width="500"/>
 </p>
