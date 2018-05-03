@@ -23,7 +23,7 @@ Android/RemixOS platform. Its main objective is to enable new applications to of
 	Using facial knowledge and looking for distinctive brightness gradients of the eye the attention meter can quickly find, detect eyes, and measure the intermittent rate of a face over several frames. Each identified face is given a rating for attention that varies over time. It starts at 0 and increases according to the attention exhibited by the individual.
 
 <p align="left">
-  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/attention_sample.png" width="250"/>
+  <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/attention_sample.png" width="350"/>
   <img src="https://github.com/rafaelaaraujo/Face-detect-framework/blob/master/archives/graph_attention.png" width="250"/>
 </p>
 
